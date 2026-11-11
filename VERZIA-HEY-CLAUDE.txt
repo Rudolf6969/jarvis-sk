@@ -1,0 +1,4 @@
+Verzia hey-claude (https://github.com/kamol1dn/hey-claude), na ktoru sedia slovenske upravy.
+Meni sa len spolu so suborom jarvis-ulohy-do-prace.patch.
+
+7981e4696ede22b67048be4f66323ae4a79a6f4c

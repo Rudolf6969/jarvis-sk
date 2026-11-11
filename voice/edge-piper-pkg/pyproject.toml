@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "edge-piper"
+version = "1.0.0"
+description = "Prekladac: hey-claude vola toto namiesto Pipera, vnutri je Edge TTS"
+requires-python = ">=3.9"
+dependencies = [
+    "edge-tts>=7.0",
+    "av",
+    "numpy",
+]
+
+[project.scripts]
+edge-piper = "edge_piper:main"
+
+[tool.setuptools]
+py-modules = ["edge_piper"]

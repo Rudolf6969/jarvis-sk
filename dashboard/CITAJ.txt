@@ -1,0 +1,68 @@
+JARVIS DASHBOARD
+================
+
+Co to je
+  Prehlad toho, co JARVIS a Claude Code prave robia. Dashboard cita subory
+  so stavom a pocuva iba na tomto pocitaci (127.0.0.1:8642).
+  Jedina vec, ktorou do JARVISa zasahuje: tlacidlo ZASTAVIT pri beziacej
+  hlasovej ulohe. Posle JARVISovi spravu "stop-task <id>" a ten ulohu ukonci.
+  To iste spravi veta "prestan to robit" alebo "zastav to".
+  Pauza neexistuje: zastavena uloha sa neda prebudit, zadaj ju znova.
+  Okno sa po zmene stranky nacita samo znova.
+
+Vycistenie a kopirovanie
+  Rozhovor, Dobehlo a Dennik maju tlacidla KOPIROVAT a VYCISTIT, hore vlavo je
+  KOPIROVAT VSETKO a VYCISTIT VSETKO. Vycistenie nic nemaze: dashboard si len
+  zapamata cas (subor vycistene.json) a ukazuje iba novsie zaznamy. Odkaz
+  "Zobrazit aj starsie" v prazdnom paneli vrati vsetko spat.
+  Kopirovanie da do schranky cisty text presne toho, co je v paneli vidiet.
+  Ked nieco nefunguje, skopiruj Rozhovor a Dennik a posli ich autorovi.
+
+Ako sa spusta
+  Sam, ked spustis SPUSTIT-JARVIS.bat.
+  Rucne bez JARVISa: SPUSTIT-DASHBOARD.bat v tomto priecinku.
+  Cela obrazovka: F11. Okno mozes zavriet, server sa vypne sam,
+  ked JARVIS nebezi a okno je zavrete dlhsie nez 2 minuty.
+  Okno otvara Microsoft Edge v rezime aplikacie.
+
+Co ukazuje a odkial to berie
+  Stav JARVISa, upozornenia, dennik   hey-claude\state\logs\app.log
+  Rozhovor a odozva                   hey-claude\state\latency.csv
+  Hlasove ulohy                       hey-claude\state\tasks.json
+  Na com pracuje, co dobehlo          %USERPROFILE%\.claude\projects (relacie Claude Code, 36 hodin)
+  Limit Claude (5 hodin, 7 dni)       z poslednej hlasovej ulohy
+  System                              psutil a NVML z prostredia hey-claude
+
+Limit Claude
+  Percenta sa obnovia po kazdej hlasovej ulohe. Pred prvou ulohou je panel prazdny.
+  Biela ciarka na ukazovateli = kolko casu z okna uplynulo.
+
+Stavy v strede
+  POHOTOVOST caka na budiace slovo, POCUVA, MYSLI, ODPOVEDA,
+  CAKA NA POVOLENIE, STLMENY, OFFLINE. Odvodzuju sa z dennika, takze
+  "pocuva" sa ukaze az pri pokracovani rozhovoru, nie hned pri budiacom slove.
+  Oranzove body na kruhu = relacie, ktore prave pracuju.
+
+Nahlad stavov bez JARVISa
+  http://127.0.0.1:8642/?state=thinking   (idle, listening, speaking, approval, muted)
+
+Subory
+  server.py    zber dat a lokalny server (len standardna kniznica + psutil, pynvml)
+  index.html   cely vzhlad a logika stranky
+  jadro.mp4    video slucka jadra, jadro.png je jej prvy zaber
+  dashboard.log  chyby dashboardu, ak nejake su
+
+Vzhlad
+  Tmavy jantarovy styl. Stav JARVISa meni rychlost otacania jadra, rychlost
+  prehravania, jas a farbu: pohotovost pomaly, pocuvanie svetlejsie, myslenie
+  rychlo, odpoved pulzuje, cakanie na povolenie do cervena, offline sede a stoji.
+  Ked bezi hlasova uloha, toci sa rychlejsie a okolo lietaju komety.
+  Ine jadro: staci nahradit jadro.mp4 (stvorec, cierne pozadie) a jadro.png.
+  Bez jadro.mp4 sa kresli pocitane jadro.
+
+Ikona na paneli uloh
+  Okno dashboardu ma na paneli uloh zivy emblem jadra: prstenec sa otaca, pri mysleni
+  rychlejsie, pri cakani na povolenie scervenie, ked JARVIS nebezi, zosedne a stoji.
+  Robi to subor ikona.py (kresli zabery z ikona.png a posiela ich oknu). Panel uloh
+  ikonu prekresli najviac asi 10-krat za sekundu, plynulejsie to Windows nepusti.
+  jarvis.ico je ta ista ikona pre odkaz na ploche.

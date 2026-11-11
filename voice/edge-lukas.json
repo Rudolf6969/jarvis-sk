@@ -1,0 +1,18 @@
+{
+  "audio": {
+    "sample_rate": 24000
+  },
+  "prefer": "edge",
+  "edge": {
+    "voice": "sk-SK-LukasNeural",
+    "rate": "+0%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "timeout_s": 15
+  },
+  "fallback": {
+    "piper_exe": "C:\\JARVIS\\hey-claude\\.venv\\Scripts\\piper.exe",
+    "piper_model": "C:\\JARVIS\\hey-claude\\state\\models\\piper\\sk_SK-lili-medium.onnx",
+    "sample_rate": 22050
+  }
+}

@@ -1,0 +1,1079 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<title>JARVIS</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" id="fav" type="image/png" href="data:image/png;base64,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">
+<style>
+:root{
+  /* tmavy jantarovy vzhlad: --cy je hlavna farba (jantar), --cy2 svetle zlato, --ice chladny protipol */
+  --bg:#060403; --ink:#f6e8d2; --dim:#ab9370; --faint:#7d684b;
+  --line:#35250f; --line2:#8a5a16; --cy:#ffb23a; --cy2:#ffe0a3;
+  --warn:#ff7a2f; --bad:#ff4057; --ok:#7fe3b0; --ice:#7fb6ff;
+  --st:var(--cy); --spin:44s;
+  --f:"Bahnschrift","Barlow Condensed","DIN Alternate","Segoe UI",system-ui,sans-serif;
+  --m:"Cascadia Mono","Cascadia Code",Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:14px/1.38 var(--f);font-stretch:semi-condensed;overflow:hidden;
+  -webkit-font-smoothing:antialiased}
+body[data-state=offline]{--st:#7a6f62;--spin:0s}
+body[data-state=starting]{--spin:9s}
+body[data-state=listening]{--st:#fff3d6;--spin:16s}
+body[data-state=thinking]{--spin:3.2s}
+body[data-state=speaking]{--st:var(--cy2);--spin:20s}
+body[data-state=approval]{--st:var(--warn);--spin:14s}
+body[data-state=muted]{--st:#9a8b76;--spin:120s}
+
+/* pozadie: hlbka, mriezka, riadkovanie, zrno */
+.bg{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.bg .glow{position:absolute;inset:0;background:
+  radial-gradient(46% 44% at 50% 30%,rgba(150,86,10,.30),transparent 72%),
+  radial-gradient(42% 46% at 6% 104%,rgba(24,44,78,.42),transparent 70%),
+  radial-gradient(42% 46% at 94% 104%,rgba(24,44,78,.42),transparent 70%)}
+.bg .floor{position:absolute;left:-30%;right:-30%;bottom:-12%;height:58%;transform:perspective(520px) rotateX(63deg);
+  transform-origin:50% 100%;opacity:.28;
+  background:repeating-linear-gradient(90deg,rgba(255,178,58,.16) 0 1px,transparent 1px 72px),
+             repeating-linear-gradient(0deg,rgba(255,178,58,.16) 0 1px,transparent 1px 72px);
+  -webkit-mask-image:linear-gradient(0deg,#000 5%,transparent 88%);mask-image:linear-gradient(0deg,#000 5%,transparent 88%)}
+.bg .scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,224,163,.035) 0 1px,transparent 1px 3px)}
+.bg .grain{position:absolute;inset:0;opacity:.11;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E")}
+.bg .vig{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(1,1,0,.9))}
+.frame{position:fixed;inset:6px;pointer-events:none;border:1px solid rgba(255,178,58,.13)}
+.frame i{position:absolute;width:26px;height:26px;border:2px solid var(--cy);opacity:.75}
+.frame i:nth-child(1){left:-1px;top:-1px;border-right:0;border-bottom:0}
+.frame i:nth-child(2){right:-1px;top:-1px;border-left:0;border-bottom:0}
+.frame i:nth-child(3){left:-1px;bottom:-1px;border-right:0;border-top:0}
+.frame i:nth-child(4){right:-1px;bottom:-1px;border-left:0;border-top:0}
+
+.app{position:relative;height:100vh;display:grid;grid-template-rows:auto minmax(0,1fr);gap:10px;padding:16px 20px 18px}
+
+/* horna lista */
+.top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;min-height:58px}
+.tl{display:flex;flex-direction:column;gap:3px;min-width:0}
+.tl .l1{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--dim);font-size:13.5px}
+.tl .l2{color:var(--faint);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tl b,.tr b{color:var(--ink);font-weight:500}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:3px 11px 2px;border:1px solid var(--st);color:var(--st);
+  letter-spacing:.16em;font-size:12.5px;font-weight:600;background:rgba(255,178,58,.07)}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--st);box-shadow:0 0 9px var(--st)}
+body:not([data-state=offline]) .pill::before{animation:blink 2.4s ease-in-out infinite}
+.mark{position:relative;padding:9px 62px 7px;text-align:center;
+  clip-path:polygon(0 0,100% 0,calc(100% - 26px) 100%,26px 100%);
+  background:linear-gradient(180deg,rgba(255,178,58,.22),rgba(255,178,58,.04));border-top:2px solid var(--cy)}
+.mark h1{margin:0;font-size:27px;font-weight:600;letter-spacing:.46em;text-indent:.46em;color:var(--cy2);
+  text-shadow:0 0 18px rgba(255,178,58,.8);line-height:1.1}
+.mark small{display:block;font-size:11px;letter-spacing:.3em;text-indent:.3em;color:var(--dim);margin-top:2px}
+.tr{text-align:right}
+.clock{font-size:34px;font-weight:300;letter-spacing:.05em;line-height:1;color:var(--cy2);font-variant-numeric:tabular-nums;
+  text-shadow:0 0 16px rgba(255,178,58,.55)}
+.clock span{font-size:19px;color:var(--dim)}
+.date{font-size:13px;color:var(--dim);letter-spacing:.06em;margin-top:3px}
+
+/* rozlozenie */
+.grid{display:grid;grid-template-columns:minmax(300px,23%) minmax(0,1fr) minmax(360px,27%);gap:12px;min-height:0}
+.col{display:flex;flex-direction:column;gap:12px;min-height:0;min-width:0}
+
+/* panel so zrezanymi rohmi */
+.panel{position:relative;display:flex;flex-direction:column;min-height:0;--c:15px;
+  clip-path:polygon(var(--c) 0,100% 0,100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,0 100%,0 var(--c))}
+.panel::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--cy) 0,var(--line) 9%,var(--line) 91%,var(--cy) 100%);opacity:.9}
+.panel::after{content:"";position:absolute;inset:1px;
+  background:linear-gradient(180deg,rgba(21,14,8,.94),rgba(8,5,3,.96));
+  clip-path:polygon(var(--c) 0,100% 0,100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,0 100%,0 var(--c))}
+.panel>*{position:relative;z-index:1}
+.grow{flex:1 1 0}
+.ph{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:10px 16px 7px 22px;flex:none}
+.ph h2{margin:0;font-size:12.5px;font-weight:600;letter-spacing:.2em;color:var(--cy2);white-space:nowrap}
+.ph h2::before{content:"";display:inline-block;width:14px;height:2px;background:var(--cy);margin:0 8px 4px 0;box-shadow:0 0 8px var(--cy)}
+.ph .meta{font-size:12.5px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pb{flex:1;min-height:0;overflow:auto;padding:2px 16px 14px 16px}
+.pb::-webkit-scrollbar{width:6px}.pb::-webkit-scrollbar-thumb{background:var(--line)}.pb::-webkit-scrollbar-track{background:transparent}
+.pa{display:flex;gap:6px;flex:none;margin-left:auto}
+.pa button,.tools button{font:inherit;font-size:10.5px;font-weight:600;letter-spacing:.14em;color:var(--dim);background:none;border:1px solid var(--line);padding:2px 7px 1px;cursor:pointer}
+.pa button:hover,.tools button:hover{color:var(--cy2);border-color:var(--line2);background:rgba(255,178,58,.08)}
+.pa button:focus-visible,.tools button:focus-visible,.lnk:focus-visible{outline:2px solid var(--cy2);outline-offset:2px}
+.pa button[data-clear]:hover,.tools button[data-clear]:hover{color:var(--warn);border-color:var(--warn);background:rgba(255,122,47,.08)}
+.ph .meta{margin-left:auto}.ph .meta + .pa{margin-left:0}
+.tools{display:flex;gap:6px;margin-top:6px}
+.lnk{font:inherit;color:var(--cy);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline}
+.empty{color:var(--faint);padding:10px 4px;font-size:13.5px}
+.k{font-size:11.5px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase}
+.num{font-variant-numeric:tabular-nums}
+
+/* system */
+.sys{display:grid;grid-template-columns:58px 1fr auto;gap:7px 10px;align-items:center}
+.sys .v{font-size:13.5px;color:var(--ink);text-align:right;white-space:nowrap}
+.sys .v small{color:var(--dim);font-size:12px}
+.bar{position:relative;height:7px;background:rgba(255,178,58,.1);overflow:hidden}
+.bar>i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--line2),var(--cy));
+  box-shadow:0 0 10px var(--cy);transition:width .7s cubic-bezier(.2,.7,.2,1)}
+.bar::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 7px,#0c0805 7px 9px)}
+.bar.warn>i{background:var(--warn);box-shadow:0 0 10px var(--warn)}
+.bar.bad>i{background:var(--bad);box-shadow:0 0 10px var(--bad)}
+.spark{display:block;width:100%;height:38px;margin-top:10px}
+.spark polyline{fill:none;stroke-width:1.4;vector-effect:non-scaling-stroke}
+.sysfoot{display:flex;justify-content:space-between;gap:10px;margin-top:6px;font-size:12.5px;color:var(--dim)}
+.sysfoot i{font-style:normal}
+.lg{display:inline-block;width:9px;height:2px;vertical-align:middle;margin-right:5px}
+
+/* rozhovor */
+.turn{padding:8px 0 9px;border-bottom:1px solid rgba(138,90,22,.28)}
+.turn:last-child{border-bottom:0}
+.turn .h{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--dim)}
+.turn .q{color:var(--ink);margin-top:2px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.turn .a{color:var(--cy2);opacity:.86;margin-top:3px;padding-left:10px;border-left:2px solid var(--line2);
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tag{display:inline-block;padding:0 6px;border:1px solid var(--line2);color:var(--dim);font-size:11px;letter-spacing:.08em;line-height:16px}
+.tag.ok{border-color:var(--ok);color:var(--ok)}.tag.warn{border-color:var(--warn);color:var(--warn)}.tag.bad{border-color:var(--bad);color:var(--bad)}
+
+/* odozva */
+.lat{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:end}
+.lat .big{font-size:30px;font-weight:300;line-height:1;color:var(--cy2)}
+.lat .big small{font-size:14px;color:var(--dim)}
+.lat svg{width:100%;height:44px;display:block}
+.lat .parts{grid-column:1/-1;font-size:12.5px;color:var(--dim)}
+
+/* jadro */
+.core{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:22px;flex:none;padding:2px 4px 0}
+.ret{position:relative;width:clamp(300px,47vh,520px);aspect-ratio:1;margin:-4.5vh 0 -4.5vh}
+.ret::before{content:"";position:absolute;inset:-6%;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,transparent 0,transparent 16%,color-mix(in srgb,var(--st) 30%,transparent) 30%,color-mix(in srgb,var(--st) 10%,transparent) 46%,transparent 68%);
+  opacity:.42;transition:opacity .8s}
+body[data-state=offline] .ret::before,body[data-state=muted] .ret::before{opacity:.18}
+body[data-state=listening] .ret::before,body[data-state=speaking] .ret::before{opacity:.6}
+body[data-state=approval] .ret::before{animation:pulse .9s ease-in-out infinite}
+/* jadro ako video slucka: cierne pozadie zmizne cez screen, otacanie a jas riadi stav */
+#brain{position:absolute;inset:1%;width:98%;height:98%;object-fit:cover;border-radius:50%;mix-blend-mode:screen;display:none;
+  animation:spin var(--bspin,150s) linear infinite;filter:var(--bfx,none);transition:filter .9s,opacity .9s;
+  -webkit-mask-image:radial-gradient(circle,#000 62%,transparent 71%);mask-image:radial-gradient(circle,#000 62%,transparent 71%)}
+.ret.vid #brain{display:block}
+body[data-state=offline]{--bspin:0s;--bfx:grayscale(.85) brightness(.32)}
+body[data-state=muted]{--bspin:400s;--bfx:grayscale(.6) brightness(.5)}
+body[data-state=starting]{--bspin:14s;--bfx:brightness(.85)}
+body[data-state=idle]{--bspin:150s;--bfx:brightness(1.05)}
+body[data-state=listening]{--bspin:60s;--bfx:brightness(1.3) saturate(.72)}
+body[data-state=thinking]{--bspin:9s;--bfx:brightness(1.22) contrast(1.06)}
+body[data-state=speaking]{--bspin:40s;--bfx:brightness(1.28)}
+body[data-state=approval]{--bspin:70s;--bfx:hue-rotate(-24deg) saturate(1.5) brightness(1.12)}
+body.busy:not([data-state=offline]):not([data-state=muted]):not([data-state=thinking]){--bspin:16s}
+body[data-state=speaking] .ret.vid #brain{animation:spin var(--bspin) linear infinite,talk .46s ease-in-out infinite alternate}
+body[data-state=offline] #brain{animation:none}
+#orb{position:absolute;inset:0;width:100%;height:100%;display:block;mix-blend-mode:screen}
+.ret.nogl #orb{display:none}
+.ret.nogl::after{content:"";position:absolute;inset:12%;border-radius:50%;border:1px solid var(--st);
+  box-shadow:0 0 34px color-mix(in srgb,var(--st) 55%,transparent),inset 0 0 60px color-mix(in srgb,var(--st) 30%,transparent)}
+/* stav je na stitku pod stredom gule, aby sa dal citat a gula ostala cista */
+.ret-t{position:absolute;left:50%;bottom:4.5%;transform:translateX(-50%);z-index:1;display:flex;flex-direction:column;align-items:center;
+  text-align:center;gap:1px;min-width:56%;max-width:92%;padding:8px 22px 7px;
+  background:linear-gradient(180deg,rgba(17,11,6,.93),rgba(6,4,3,.9));
+  border-top:2px solid var(--st);border-bottom:1px solid color-mix(in srgb,var(--st) 40%,transparent);transition:border-color .5s;
+  clip-path:polygon(13px 0,100% 0,100% calc(100% - 13px),calc(100% - 13px) 100%,0 100%,0 13px);
+  box-shadow:0 0 28px rgba(0,0,0,.6)}
+.ret-t .st{font-size:clamp(17px,2.5vh,26px);font-weight:600;letter-spacing:.16em;text-indent:.16em;color:var(--st);line-height:1.12;max-width:100%;
+  text-shadow:0 0 16px color-mix(in srgb,var(--st) 65%,transparent);transition:color .5s}
+.ret-t .sub{font-size:13.5px;color:var(--ink);opacity:.82;max-width:100%}
+.ret-t .since{font-size:12px;color:var(--dim);letter-spacing:.08em;font-variant-numeric:tabular-nums}
+.wave{display:flex;align-items:center;gap:3px;height:14px;margin:2px 0 0}
+.wave i{width:3px;height:100%;background:var(--st);transform:scaleY(.07);transform-origin:50% 50%;opacity:.85}
+body[data-state=listening] .wave i{animation:wv .52s ease-in-out infinite alternate;--amp:.55}
+body[data-state=speaking] .wave i{animation:wv .34s ease-in-out infinite alternate;--amp:1}
+body[data-state=thinking] .wave i{animation:wvt 1.1s linear infinite}
+.call{min-width:0;position:relative;padding:10px 0}
+.call .k{display:flex;align-items:center;gap:8px}
+.call.l{text-align:right}.call.l .k{justify-content:flex-end}
+.call .k::after,.call.l .k::before{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent)}
+.call.l .k::after{display:none}.call.l .k::before{background:linear-gradient(270deg,var(--line2),transparent)}
+.call:not(.l) .k::before{display:none}
+.call p{margin:7px 0 6px;font-size:16px;line-height:1.36;color:var(--ink);display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.call.r p{color:var(--cy2)}
+.call .f{font-size:12.5px;color:var(--dim);text-wrap:balance}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:7px 9px;padding:10px 0 2px;flex:none}
+.chip{display:flex;align-items:baseline;gap:7px;padding:3px 11px 2px;border:1px solid var(--line);background:rgba(20,13,7,.72);font-size:13px;white-space:nowrap}
+.chip .k{font-size:10.5px}
+.chip.warn{border-color:var(--warn)}.chip.warn b{color:var(--warn)}
+.chip.off b{color:var(--faint)}
+.chip b{font-weight:500;color:var(--ink)}
+.dual{display:grid;grid-template-columns:1.3fr 1fr;gap:12px;flex:1;min-height:0}
+
+/* dobehlo */
+.done{padding:9px 0 10px;border-bottom:1px solid rgba(138,90,22,.28);display:grid;grid-template-columns:52px 1fr;gap:2px 10px}
+.done:last-child{border-bottom:0}
+.done .tm{font-size:15px;color:var(--cy2);font-variant-numeric:tabular-nums;line-height:1.2}
+.done .tm small{display:block;font-size:11.5px;color:var(--dim)}
+.done .hd{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:var(--dim)}
+.done .hd b{color:var(--ink);font-weight:500;font-size:13.5px}
+.done .pr{color:var(--dim);font-size:13px;margin-top:2px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.done .rs{color:var(--ink);margin-top:3px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.done .ft{font-size:12px;color:var(--faint);margin-top:3px}
+
+/* dennik */
+.log{font:11.5px/1.5 var(--m);font-stretch:normal;color:#c8b392}
+.log div{white-space:pre-wrap;word-break:break-word;padding-left:62px;text-indent:-62px}
+.log .tm{color:var(--faint)}
+.log .tg{color:var(--cy)}
+.log .w{color:var(--warn)}.log .e{color:var(--bad)}
+.log .hl{color:var(--ink)}
+
+/* limity */
+.lim{display:grid;grid-template-columns:1fr 1fr;gap:6px 10px}
+.gauge{display:grid;grid-template-columns:104px 1fr;align-items:center;gap:10px;min-width:0}
+.gauge svg{width:104px;height:104px}
+.gauge circle{fill:none;stroke-width:8;stroke-linecap:butt}
+.gauge .trk{stroke:rgba(255,178,58,.2)}
+.gauge .val{stroke:var(--g,var(--cy));filter:drop-shadow(0 0 5px var(--g,var(--cy)));transition:stroke-dasharray .9s cubic-bezier(.2,.7,.2,1)}
+.gauge .tick{stroke:#fff;stroke-width:15;filter:drop-shadow(0 0 2px #000)}
+.gauge text{fill:var(--ink);font:300 25px var(--f);text-anchor:middle;font-variant-numeric:tabular-nums}
+.gauge text.u{font-size:10px;fill:var(--dim);letter-spacing:.14em}
+.gauge .gi{min-width:0;font-size:12.5px;color:var(--dim);line-height:1.4}
+.gauge .gi b{display:block;font-size:12px;letter-spacing:.18em;color:var(--cy2);font-weight:600;margin-bottom:2px}
+.gauge .gi span{display:block}
+.limfoot{grid-column:1/-1;font-size:12.5px;color:var(--dim);border-top:1px solid rgba(138,90,22,.28);padding-top:7px;margin-top:2px}
+.limfoot b{color:var(--ink);font-weight:500}
+
+/* relacie */
+.ses{padding:10px 0 11px;border-bottom:1px solid rgba(138,90,22,.28)}
+.ses:last-child{border-bottom:0}
+.ses .hd{display:flex;align-items:center;gap:9px}
+.dot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--s,var(--faint));box-shadow:0 0 9px var(--s,transparent)}
+.ses.working .dot{animation:blink 1s ease-in-out infinite}
+.ses .ti{flex:1;min-width:0;font-size:15px;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stopb{flex:none;font:inherit;font-size:11.5px;font-weight:600;letter-spacing:.14em;color:var(--bad);background:rgba(255,64,87,.08);border:1px solid var(--bad);padding:3px 10px 2px;cursor:pointer;clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px)}
+.stopb:hover{background:var(--bad);color:var(--bg)}.stopb:focus-visible{outline:2px solid var(--cy2);outline-offset:2px}.stopb:disabled{opacity:.55;cursor:default;background:none;color:var(--bad)}
+.ses .stt{flex:none;font-size:11.5px;letter-spacing:.14em;color:var(--s,var(--dim));font-weight:600}
+.ses .mt{font-size:12.5px;color:var(--dim);margin:2px 0 0 18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ses .pr{margin:5px 0 0 18px;color:var(--ink);opacity:.9;font-size:13.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ses .act{margin:6px 0 0 18px;padding:5px 9px;background:rgba(255,178,58,.07);border-left:2px solid var(--s,var(--cy));font-size:13px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--cy2)}
+.ses .act b{color:var(--ink);font-weight:600}
+.ses .ag{margin:4px 0 0 18px;font-size:12.5px;color:var(--warn)}
+.ses.working{--s:var(--cy)}.ses.quiet{--s:var(--warn)}.ses.error{--s:var(--bad)}.ses.done{--s:var(--ok)}.ses.stalled{--s:#8a7a66}
+.ses.idle .ti{color:var(--dim);font-weight:400;font-size:14px}
+.ctxb{display:inline-block;width:54px;height:5px;background:rgba(255,178,58,.14);vertical-align:middle;margin:0 5px 2px 4px;position:relative}
+.ctxb i{position:absolute;left:0;top:0;bottom:0;background:var(--cy)}
+
+/* upozornenia */
+.al{display:grid;grid-template-columns:16px 1fr;gap:1px 8px;padding:7px 0;border-bottom:1px solid rgba(138,90,22,.28);font-size:13.5px}
+.al:last-child{border-bottom:0}
+.al .ic{color:var(--warn);font-weight:700}
+.al.bad .ic{color:var(--bad)}.al.info .ic{color:var(--dim)}
+.al .d{grid-column:2;font-size:12px;color:var(--dim);word-break:break-word;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.allok{color:var(--ok);padding:8px 2px;font-size:13.5px}
+
+.lost{position:fixed;left:50%;top:84px;transform:translateX(-50%);z-index:9;padding:8px 22px;border:1px solid var(--bad);
+  background:rgba(40,6,12,.92);color:#ffc7ce;letter-spacing:.12em;font-size:13px;display:none}
+body.lost .lost{display:block}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes talk{from{opacity:.82}to{opacity:1}}
+@keyframes blink{50%{opacity:.35}}
+@keyframes pulse{50%{opacity:.2}}
+@keyframes wv{from{transform:scaleY(.1)}to{transform:scaleY(calc(var(--amp,1)*var(--h,1)))}}
+@keyframes wvt{0%,100%{transform:scaleY(.08)}50%{transform:scaleY(.42)}}
+
+@media (max-width:1560px){
+  .gauge{grid-template-columns:1fr;justify-items:center;text-align:center;gap:2px}
+  .gauge svg{width:92px;height:92px}
+}
+@media (max-height:860px){
+  .call p{-webkit-line-clamp:4;font-size:15px}
+  .ret{width:clamp(220px,33vh,330px)}
+}
+@media (max-width:1240px){
+  body{overflow:auto}
+  .app{height:auto;min-height:100vh}
+  .grid{grid-template-columns:1fr}
+  .grid>.col:nth-child(2){order:-1}
+  .top{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .tl,.tr{align-items:center;text-align:center}
+  .core{grid-template-columns:1fr;justify-items:center}
+  .call.l{text-align:left}.call.l .k{justify-content:flex-start}
+  .dual{grid-template-columns:1fr}
+  .panel.grow,.dual .panel{min-height:320px;max-height:520px}
+}
+@media (prefers-reduced-motion:reduce){
+  .spinA,.spinB,.spinC,.wave i,.halo,.dot,.pill::before{animation:none!important}
+}
+</style>
+</head>
+<body data-state="offline">
+<div class="bg"><div class="glow"></div><div class="floor"></div><div class="scan"></div><div class="grain"></div><div class="vig"></div></div>
+<div class="frame"><i></i><i></i><i></i><i></i></div>
+<div class="lost">SPOJENIE SO SERVEROM DASHBOARDU SA STRATILO</div>
+
+<div class="app">
+  <header class="top">
+    <div class="tl"><div class="l1" id="topL1"></div><div class="l2" id="topL2"></div><div class="tools"><button type="button" data-copy="all">KOPÍROVAŤ VŠETKO</button><button type="button" data-clear="all">VYČISTIŤ VŠETKO</button></div></div>
+    <div class="mark"><h1>JARVIS</h1><small id="markSub">HLASOVÝ AGENT</small></div>
+    <div class="tr"><div class="clock" id="clock"></div><div class="date" id="date"></div></div>
+  </header>
+
+  <main class="grid">
+    <section class="col">
+      <div class="panel">
+        <div class="ph"><h2>SYSTÉM</h2><span class="meta" id="sysMeta"></span></div>
+        <div class="pb" id="sys" style="overflow:hidden"></div>
+      </div>
+      <div class="panel grow">
+        <div class="ph"><h2>ROZHOVOR</h2><span class="meta" id="convMeta"></span><span class="pa"><button type="button" data-copy="conv">KOPÍROVAŤ</button><button type="button" data-clear="conv">VYČISTIŤ</button></span></div>
+        <div class="pb" id="conv"></div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h2>ODOZVA</h2><span class="meta" id="latMeta"></span></div>
+        <div class="pb" id="lat" style="overflow:hidden"></div>
+      </div>
+    </section>
+
+    <section class="col">
+      <div class="core">
+        <div class="call l" id="callL"></div>
+        <div class="ret">
+          <video id="brain" muted loop autoplay playsinline preload="auto" poster="/jadro.png" src="/jadro.mp4" aria-hidden="true"></video><canvas id="orb" aria-hidden="true"></canvas>
+          <div class="ret-t">
+            <div class="st" id="stLabel">OFFLINE</div>
+            <div class="wave" id="wave"></div>
+            <div class="sub" id="stSub"></div>
+            <div class="since" id="stSince"></div>
+          </div>
+        </div>
+        <div class="call r" id="callR"></div>
+      </div>
+      <div class="chips" id="chips"></div>
+      <div class="dual">
+        <div class="panel">
+          <div class="ph"><h2>DOBEHLO</h2><span class="meta" id="doneMeta"></span><span class="pa"><button type="button" data-copy="done">KOPÍROVAŤ</button><button type="button" data-clear="done">VYČISTIŤ</button></span></div>
+          <div class="pb" id="done"></div>
+        </div>
+        <div class="panel">
+          <div class="ph"><h2>DENNÍK</h2><span class="meta" id="logMeta"></span><span class="pa"><button type="button" data-copy="log">KOPÍROVAŤ</button><button type="button" data-clear="log">VYČISTIŤ</button></span></div>
+          <div class="pb log" id="log"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="col">
+      <div class="panel">
+        <div class="ph"><h2>LIMIT CLAUDE</h2><span class="meta" id="limMeta"></span></div>
+        <div class="pb" id="lim" style="overflow:hidden"></div>
+      </div>
+      <div class="panel grow" style="flex-grow:1.7">
+        <div class="ph"><h2>NA ČOM PRACUJE</h2><span class="meta" id="sesMeta"></span></div>
+        <div class="pb" id="ses"></div>
+      </div>
+      <div class="panel grow">
+        <div class="ph"><h2>UPOZORNENIA</h2><span class="meta" id="alMeta"></span></div>
+        <div class="pb" id="al"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const cache = {};
+function put(id, html){ if (cache[id] !== html){ cache[id] = html; $(id).innerHTML = html; return true; } return false; }
+const nowS = () => Date.now() / 1000;
+const pl = (n, a, b, c) => n + " " + (n === 1 ? a : (n >= 2 && n <= 4 ? b : c));
+const p2 = n => String(n).padStart(2, "0");
+
+function dur(s){
+  s = Math.max(0, Math.round(s));
+  if (s < 60) return s + " s";
+  if (s < 3600) return Math.floor(s / 60) + " min " + p2(s % 60) + " s";
+  if (s < 86400) return Math.floor(s / 3600) + " h " + p2(Math.floor(s % 3600 / 60)) + " min";
+  return Math.floor(s / 86400) + " d " + Math.floor(s % 86400 / 3600) + " h";
+}
+function durShort(s){
+  s = Math.max(0, Math.round(s));
+  if (s < 60) return s + " s";
+  if (s < 3600) return Math.round(s / 60) + " min";
+  if (s < 86400) { const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60); return h + " h" + (m ? " " + m + " min" : ""); }
+  const d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600); return d + " d" + (h ? " " + h + " h" : "");
+}
+function ago(ts){ const d = nowS() - ts; return d < 5 ? "práve teraz" : "pred " + durShort(d); }
+function hm(ts){ const d = new Date(ts * 1000); return p2(d.getHours()) + ":" + p2(d.getMinutes()); }
+function hms(ts){ const d = new Date(ts * 1000); return hm(ts) + ":" + p2(d.getSeconds()); }
+function isToday(ts){ return new Date(ts * 1000).toDateString() === new Date().toDateString(); }
+function dayTag(ts){
+  if (isToday(ts)) return "";
+  const y = new Date(); y.setDate(y.getDate() - 1);
+  return new Date(ts * 1000).toDateString() === y.toDateString() ? "včera" : new Date(ts * 1000).toLocaleDateString("sk-SK", {day:"numeric", month:"numeric"});
+}
+function tok(n){ return n >= 1e6 ? (n / 1e6).toFixed(1).replace(".", ",") + " M" : n >= 1000 ? Math.round(n / 1000) + "k" : String(n || 0); }
+function bytes(b){ return b >= 1048576 ? (b / 1048576).toFixed(1).replace(".", ",") + " MB/s" : Math.round((b || 0) / 1024) + " kB/s"; }
+function num(n, d = 1){ return n == null ? "–" : Number(n).toFixed(d).replace(".", ","); }
+function model(m){
+  if (!m) return "";
+  const r = m.replace(/^claude-/, "").replace(/-\d{8}$/, "").split("-");
+  const name = r.shift() || "";
+  return name.charAt(0).toUpperCase() + name.slice(1) + (r.length ? " " + r.join(".") : "");
+}
+const ENTRY = {"cli":"terminál", "sdk-cli":"na pozadí", "claude-desktop":"desktop", "claude-vscode":"VS Code", "sdk-ts":"SDK", "sdk-py":"SDK"};
+// casove znacky: text doplna ticker, aby sa HTML panelov nemenilo kazdu sekundu
+const T = (kind, ts) => '<span data-' + kind + '="' + Number(ts) + '"></span>';
+function tick(){
+  document.querySelectorAll("[data-ago]").forEach(e => { e.textContent = ago(+e.dataset.ago); });
+  document.querySelectorAll("[data-since]").forEach(e => { e.textContent = dur(nowS() - +e.dataset.since); });
+  document.querySelectorAll("[data-until]").forEach(e => { const d = +e.dataset.until - nowS(); e.textContent = d > 0 ? "o " + durShort(d) : "teraz"; });
+  const d = new Date();
+  $("clock").innerHTML = p2(d.getHours()) + ":" + p2(d.getMinutes()) + "<span>:" + p2(d.getSeconds()) + "</span>";
+}
+
+const FORCE = new URLSearchParams(location.search).get("state") || "";
+const STATES = {
+  offline:   ["OFFLINE", "JARVIS nebeží"],
+  starting:  ["ŠTARTUJE", "načítava modely"],
+  idle:      ["POHOTOVOSŤ", "čaká na budiace slovo"],
+  listening: ["POČÚVA", "mikrofón je otvorený, hovor"],
+  thinking:  ["MYSLÍ", "spracúva požiadavku"],
+  speaking:  ["ODPOVEDÁ", "hovorí odpoveď"],
+  approval:  ["ČAKÁ NA POVOLENIE", "potvrď alebo zamietni"],
+  muted:     ["STLMENÝ", "počúvanie je vypnuté"],
+};
+
+// vlna v jadre: vysky stlpcov su pevne, animuje ich len stav
+(function(){
+  let h = "";
+  for (let i = 0; i < 27; i++){
+    const x = Math.abs(i - 13) / 13, a = (0.35 + 0.65 * Math.cos(x * Math.PI / 2)) * (0.55 + 0.45 * Math.abs(Math.sin(i * 2.4)));
+    h += '<i style="--h:' + a.toFixed(2) + ';animation-delay:-' + ((i * 137) % 900) + 'ms"></i>';
+  }
+  $("wave").innerHTML = h;
+})();
+
+function renderTop(S){
+  const p = S.proc || {}, j = S.jarvis, run = j.run || {};
+  let l1;
+  if (p.running){
+    l1 = '<span class="pill">ONLINE</span><span>beží <b>' + T("since", p.started) + '</b></span>'
+       + (run.version ? '<span>verzia <b>' + esc(run.version) + '</b></span>' : '')
+       + '<span>pamäť <b>' + num((p.rss_mb + (p.children_rss_mb || 0)) / 1024) + ' GB</b></span>';
+  } else {
+    const last = j.log.length ? j.log[j.log.length - 1].ts : null;
+    l1 = '<span class="pill">OFFLINE</span><span>spusti <b>SPUSTIT-JARVIS.bat</b></span>'
+       + (last ? '<span>posledný záznam ' + T("ago", last) + '</span>' : '');
+  }
+  put("topL1", l1);
+  const w = S.working || 0;
+  put("topL2", 'dnes <b>' + pl(S.turns_today || 0, "hlasová požiadavka", "hlasové požiadavky", "hlasových požiadaviek") + '</b> · <b>'
+    + pl(S.done_today || 0, "dokončená úloha", "dokončené úlohy", "dokončených úloh") + '</b> · práve beží <b>' + w + '</b>');
+  $("date").textContent = new Date().toLocaleDateString("sk-SK", {weekday:"long", day:"numeric", month:"long", year:"numeric"});
+}
+
+function renderCore(S){
+  const j = S.jarvis, run = j.run || {};
+  const st = STATES[FORCE] ? FORCE : STATES[j.state] ? j.state : "idle";   // ?state=thinking = nahlad stavu
+  document.body.dataset.state = st;
+  const wake = (run.wake || "").split(" (")[0];
+  let sub = STATES[st][1];
+  if (st === "idle" && wake) sub = "čaká na „" + wake + "“";
+  if (st === "approval" && j.approval) sub = j.approval.text;
+  if (j.tasks_running) sub += " · " + pl(j.tasks_running, "úloha beží", "úlohy bežia", "úloh beží");
+  $("stLabel").textContent = STATES[st][0];
+  $("stSub").textContent = sub;
+  put("stSince", st === "offline" ? "" : T("since", j.state_since));
+  Orb.set(st, S.working || 0, j.tasks_running || 0);   // jadro: stav, pracujuce relacie, beziace hlasove ulohy
+
+  const conv = S.conversation || [], last = conv.length ? conv[conv.length - 1] : null;
+  // po restarte JARVISa este nic nezaznelo: ukaz poslednu vymenu zo zaznamu, nech lavy a pravy popis sedia
+  const h = j.heard || (last && last.text ? {text: last.text, how: "pred reštartom", ts: last.ts} : null);
+  put("callL", '<div class="k">POSLEDNÁ POŽIADAVKA</div>' + (h
+    ? '<p>' + esc(h.text) + '</p><div class="f">' + esc(h.how) + ' · ' + hms(h.ts) + ' · ' + T("ago", h.ts) + '</div>'
+    : '<p style="color:var(--faint)">Zatiaľ nič nezaznelo.</p>'));
+  let r = '<div class="k">ODPOVEĎ</div>';
+  const waiting = h && (!last || !last.ts || last.ts < h.ts - 1);
+  if (waiting && st === "thinking") r += '<p style="color:var(--dim)">Pripravuje odpoveď…</p><div class="f">čaká ' + T("since", h.ts) + '</div>';
+  else if (last) r += '<p>' + esc(last.reply || "(bez textu)") + '</p><div class="f">' + hms(last.ts)
+      + (last.first_audio != null ? ' · prvý zvuk za ' + num(last.first_audio) + ' s' : '')
+      + (last.route ? ' · ' + esc(last.route) : '') + '</div>';
+  else r += '<p style="color:var(--faint)">Žiadna odpoveď v zázname.</p>';
+  put("callR", r);
+
+  const rd = run.ready || {}, ag = run.agent;
+  const chip = (k, v, cls) => '<span class="chip ' + (cls || "") + '"><span class="k">' + k + '</span><b>' + esc(v) + '</b></span>';
+  let c = chip("MIKROFÓN", j.mic ? "otvorený" : "zatvorený", j.mic ? "" : "off");
+  if (rd.stt) c += chip("PREPIS", rd.stt.replace("local: ", ""), /cpu/.test(rd.stt.split("(")[0]) || /fallback/.test(rd.stt) ? "warn" : "");
+  if (rd.voice || run.voice) c += chip("HLAS", rd.voice || run.voice);
+  if (wake) c += chip("BUDENIE", run.wake.replace(/ \(.*?\)/, "").replace("threshold", "prah"));
+  if (rd.vad) c += chip("VAD", rd.vad.replace("Vad", ""));
+  if (rd.aec) c += chip("AEC", rd.aec === "on" ? "zapnuté" : rd.aec, rd.aec === "on" ? "" : "off");
+  if (rd["fast path"]) c += chip("MOZOG", rd["fast path"]);
+  if (ag) c += chip("AGENT", model(ag.model) + " · " + pl(ag.tools, "nástroj", "nástroje", "nástrojov"));
+  put("chips", c);
+}
+
+function spark(arr, color, max){
+  if (!arr || arr.length < 2) return "";
+  const n = arr.length, pts = arr.map((v, i) => (i / (n - 1) * 100).toFixed(1) + "," + (30 - Math.min(1, v / max) * 28 - 1).toFixed(1)).join(" ");
+  return '<polyline points="' + pts + '" style="stroke:' + color + '"/>';
+}
+function renderSys(S){
+  const s = S.system || {}, p = S.proc || {};
+  const row = (k, pct, v, warnAt = 85, badAt = 95) => '<span class="k">' + k + '</span><div class="bar ' + (pct >= badAt ? "bad" : pct >= warnAt ? "warn" : "")
+      + '"><i style="width:' + Math.max(0, Math.min(100, pct || 0)).toFixed(1) + '%"></i></div><span class="v num">' + v + '</span>';
+  let h = '<div class="sys">';
+  h += row("CPU", s.cpu, Math.round(s.cpu || 0) + " %");
+  h += row("RAM", s.ram, num(s.ram_used_gb) + ' <small>/ ' + Math.round(s.ram_total_gb || 0) + ' GB</small>', 88, 95);
+  if (s.gpu != null){
+    h += row("GPU", s.gpu, Math.round(s.gpu) + ' % <small>' + (s.gpu_temp != null ? s.gpu_temp + " °C" : "") + '</small>', 101, 101);
+    h += row("VRAM", s.vram, num(s.vram_used_gb) + ' <small>/ ' + Math.round(s.vram_total_gb || 0) + ' GB</small>', 90, 97);
+  }
+  h += row("DISK C", s.disk, (s.disk_free_gb ?? "–") + ' <small>GB voľných</small>', 90, 96);
+  h += '</div>';
+  const hi = s.hist || {};
+  h += '<svg class="spark" viewBox="0 0 100 30" preserveAspectRatio="none">' + spark(hi.gpu, "#7fb6ff", 100) + spark(hi.cpu, "#ffb23a", 100) + '</svg>';
+  h += '<div class="sysfoot"><span><i class="lg" style="background:#ffb23a"></i>CPU <i class="lg" style="background:#7fb6ff;margin-left:8px"></i>GPU · 90 s</span>'
+     + '<span class="num">↓ ' + bytes(s.net_down) + ' · ↑ ' + bytes(s.net_up) + '</span></div>';
+  put("sys", h);
+  $("sysMeta").textContent = p.running ? "JARVIS " + num(p.cpu, 0) + " % CPU · " + pl(p.children || 0, "podproces", "podprocesy", "podprocesov") : (s.gpu_name || "").replace("NVIDIA GeForce ", "");
+}
+
+function renderConv(S){
+  const rows = convRows(S).slice().reverse();
+  if (!rows.length){ put("conv", cut(S, "conv") ? clearedNote(S, "conv", "Rozhovor") : '<div class="empty">Zatiaľ žiadny rozhovor. Povedz budiace slovo a opýtaj sa.</div>'); $("convMeta").textContent = ""; return; }
+  let h = "";
+  for (const r of rows.slice(0, 30)){
+    const lat = r.first_audio ?? r.lookup ?? r.effect;
+    h += '<div class="turn"><div class="h"><span>' + (r.ts ? (dayTag(r.ts) ? dayTag(r.ts) + " " : "") + hms(r.ts) : "") + ' · ' + esc(r.source === "followup" ? "pokračovanie" : r.source === "voice" ? "hlas" : r.source || "")
+      + '</span><span>' + (r.intent ? '<span class="tag">' + esc(r.intent) + '</span> ' : '') + (r.route ? '<span class="tag">' + esc(r.route) + '</span> ' : '')
+      + (lat != null ? '<span class="tag ' + (lat > 6 ? "warn" : "ok") + '">' + num(lat) + ' s</span>' : '') + '</span></div>'
+      + '<div class="q">' + esc(r.text) + '</div>' + (r.reply ? '<div class="a">' + esc(r.reply) + '</div>' : '') + '</div>';
+  }
+  put("conv", h);
+  $("convMeta").textContent = "dnes " + (S.turns_today || 0);
+}
+
+function renderLat(S){
+  const rows = (S.conversation || []).filter(r => r.first_audio != null);
+  if (!rows.length){ put("lat", '<div class="empty">Odozva sa ukáže po prvej hlasovej odpovedi.</div>'); $("latMeta").textContent = ""; return; }
+  const vals = rows.map(r => r.first_audio), last = rows[rows.length - 1];
+  const avg = vals.reduce((a, b) => a + b, 0) / vals.length, max = Math.max(8, ...vals);
+  let bars = "";
+  const n = vals.length, w = 100 / n;
+  vals.forEach((v, i) => { const hh = Math.max(1.5, v / max * 30); bars += '<rect x="' + (i * w + w * 0.15).toFixed(2) + '" y="' + (32 - hh).toFixed(1) + '" width="' + (w * 0.7).toFixed(2) + '" height="' + hh.toFixed(1) + '" fill="' + (v > 6 ? "#ff7a2f" : "#ffb23a") + '" opacity="' + (i === n - 1 ? 1 : .55) + '"/>'; });
+  const parts = [];
+  if (last.stt != null) parts.push("prepis " + num(last.stt) + " s");
+  if (last.first_token != null) parts.push("prvé slovo modelu " + num(last.first_token) + " s");
+  if (last.device) parts.push(esc(last.device.replace("local: ", "")));
+  put("lat", '<div class="lat"><div class="big num">' + num(last.first_audio) + '<small> s</small></div>'
+    + '<svg viewBox="0 0 100 32" preserveAspectRatio="none">' + bars + '</svg>'
+    + '<div class="parts">od konca vety po prvý zvuk · ' + parts.join(" · ") + '</div></div>');
+  $("latMeta").textContent = "priemer " + num(avg) + " s z " + n;
+}
+
+function renderLimits(S){
+  const L = S.limits || {}, W = L.windows || {}, t = nowS();
+  const C = 2 * Math.PI * 42, ARC = C * 0.75;
+  const gauge = (key, title, len) => {
+    const w = W[key];
+    let pct = w ? w.pct : null, note = "", reset = "";
+    if (w && w.resets && w.resets < t){ pct = null; note = "okno sa obnovilo, čakám na nový údaj"; }
+    else if (w && w.resets){
+      const d = new Date(w.resets * 1000);
+      reset = '<span>obnova ' + T("until", w.resets) + '</span><span>' + (len > 86400 ? d.toLocaleDateString("sk-SK", {weekday:"short", day:"numeric", month:"numeric"}) + " " : "") + hm(w.resets) + '</span>';
+    }
+    const col = pct == null ? "#5c4a33" : pct >= 85 ? "#ff4057" : pct >= 60 ? "#ff7a2f" : "#ffb23a";
+    let tickEl = "";
+    if (pct != null && w.resets){
+      const el = Math.max(0, Math.min(1, 1 - (w.resets - t) / len));
+      tickEl = '<circle class="tick" r="42" stroke-dasharray="2.2 ' + (C - 2.2).toFixed(1) + '" stroke-dashoffset="' + (-(el * ARC) + 1.1).toFixed(1) + '"/>';
+      note = "uplynulo " + Math.round(el * 100) + " % okna";
+    }
+    return '<div class="gauge" style="--g:' + col + '"><svg viewBox="-52 -52 104 104"><g transform="rotate(135)">'
+      + '<circle class="trk" r="42" stroke-dasharray="' + ARC.toFixed(1) + ' ' + C.toFixed(1) + '"/>'
+      + '<circle class="val" r="42" stroke-dasharray="' + ((pct || 0) / 100 * ARC).toFixed(1) + ' ' + C.toFixed(1) + '"/>' + tickEl + '</g>'
+      + '<text y="6" class="num">' + (pct == null ? "–" : Math.round(pct)) + '</text><text y="22" class="u">' + (pct == null ? "" : "%") + '</text></svg>'
+      + '<div class="gi"><b>' + title + '</b>' + reset + (note ? '<span>' + note + '</span>' : '') + (w ? '' : '<span>bez údaja</span>') + '</div></div>';
+  };
+  let h = '<div class="lim">' + gauge("five_hour", "5 HODÍN", 5 * 3600) + gauge("seven_day", "7 DNÍ", 7 * 86400);
+  const extra = Object.keys(W).filter(k => k !== "five_hour" && k !== "seven_day");
+  const tk = S.tokens || {};
+  h += '<div class="limfoot">';
+  if (extra.length) h += extra.map(k => esc(k.replace(/_/g, " ")) + " <b>" + Math.round(W[k].pct) + " %</b>").join(" · ") + "<br>";
+  h += 'výstup Claude Code: <b>' + tok(tk.out_5h) + '</b> tokenov za 5 h · <b>' + tok(tk.out_today) + '</b> dnes';
+  if (!L.windows) h += '<br>Percentá sa ukážu po najbližšej odpovedi v Claude Code.';
+  h += '</div></div>';
+  put("lim", h);
+  put("limMeta", L.ts ? "údaj " + T("ago", L.ts) : "čakám na údaj");
+}
+
+const SLAB = {working:"PRACUJE", quiet:"TICHO", error:"CHYBA", done:"DOBEHLO", stalled:"ZASTAVENÉ", idle:"NEČINNÁ"};
+// ---- vycistenie a kopirovanie panelov -------------------------------------------------
+// Nic sa nemaze: server si pamata cas vycistenia a panel ukazuje len novsie zaznamy.
+let LAST = null;
+const CUT = {conv: 0, done: 0, log: 0};
+function cut(S, k){ return Math.max(CUT[k] || 0, (S.cleared || {})[k] || 0); }
+function convRows(S){ const c = cut(S, "conv"); return (S.conversation || []).filter(r => !c || (r.ts || 0) > c); }
+function doneRows(S){ const c = cut(S, "done"); return (S.done || []).filter(v => !c || (v.end || 0) > c); }
+function logRows(S){ const c = cut(S, "log"); return ((S.jarvis || {}).log || []).filter(l => !c || (l.ts || 0) > c); }
+function clearedNote(S, k, what){
+  const c = cut(S, k);
+  return '<div class="empty">' + (c ? what + ' vyčistený o ' + hms(c) + '. Nové záznamy sa ukážu tu. <button type="button" class="lnk" data-restore="' + k + '">Zobraziť aj staršie</button>' : '') + '</div>';
+}
+function textOf(k){
+  const S = LAST; if (!S) return "";
+  if (k === "conv") return convRows(S).map(r => {
+    const lat = r.first_audio ?? r.lookup ?? r.effect;
+    const tags = [r.source === "followup" ? "pokračovanie" : r.source === "voice" ? "hlas" : r.source, r.route, lat != null ? num(lat) + " s" : ""].filter(Boolean).join(", ");
+    return "[" + hms(r.ts) + "] (" + tags + ")\nJa: " + (r.text || "") + (r.reply ? "\nJarvis: " + r.reply : "");
+  }).join("\n\n");
+  if (k === "done") return doneRows(S).map(v => {
+    const lab = v.error ? "CHYBA" : v.interrupted ? "PRERUŠENÉ" : "HOTOVO";
+    const f = [lab, v.title, v.project + (v.voice ? ", hlasová úloha" : ""), "trvalo " + durShort(v.dur), pl(v.tools, "krok", "kroky", "krokov")];
+    if (v.errors) f.push(pl(v.errors, "chyba nástroja", "chyby nástrojov", "chýb nástrojov"));
+    if (v.cost) f.push("$" + num(v.cost, 2));
+    return "[" + hms(v.end) + "] " + f.join(" | ") + (v.prompt ? "\nZadanie: " + v.prompt : "") + "\nVýsledok: " + (v.error || v.result || "(bez záverečnej správy)");
+  }).join("\n\n");
+  if (k === "log") return logRows(S).map(l => hms(l.ts) + " " + (l.level && l.level !== "INFO" ? l.level + " " : "") + l.msg).join("\n");
+  if (k === "all") return ["ROZHOVOR", textOf("conv") || "(prázdne)", "", "DOBEHLO", textOf("done") || "(prázdne)", "", "DENNÍK", textOf("log") || "(prázdne)"].join("\n");
+  return "";
+}
+function flash(b, txt){ const old = b.dataset.label || b.textContent; b.dataset.label = old; b.textContent = txt; setTimeout(() => { b.textContent = old; }, 1600); }
+function postClear(what, restore){
+  return fetch("/api/clear", {method: "POST", headers: {"Content-Type": "application/json", "X-Jarvis": "1"}, body: JSON.stringify({what, restore: !!restore})});
+}
+document.addEventListener("click", e => {
+  const t = e.target.closest && e.target.closest("[data-copy],[data-clear],[data-restore]");
+  if (!t) return;
+  if (t.dataset.copy){
+    const txt = textOf(t.dataset.copy);
+    if (!txt){ flash(t, "NIČ TAM NIE JE"); return; }
+    const done = () => flash(t, "SKOPÍROVANÉ");
+    const fallback = () => { const a = document.createElement("textarea"); a.value = txt; a.style.position = "fixed"; a.style.opacity = "0"; document.body.appendChild(a); a.select(); try { document.execCommand("copy"); done(); } catch (_) { flash(t, "NEPODARILO SA"); } a.remove(); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, fallback); else fallback();
+    return;
+  }
+  const what = t.dataset.clear || t.dataset.restore, restore = !!t.dataset.restore;
+  const now = Date.now() / 1000;
+  for (const k of (what === "all" ? ["conv", "done", "log"] : [what])) CUT[k] = restore ? 0 : now;
+  if (restore && LAST && LAST.cleared) for (const k of (what === "all" ? ["conv", "done", "log"] : [what])) LAST.cleared[k] = 0;
+  if (LAST){ renderConv(LAST); renderDone(LAST); renderLog(LAST); }
+  postClear(what, restore).then(r => { if (!r.ok) throw new Error(); if (!restore) flash(t, "VYČISTENÉ"); }).catch(() => flash(t, "NEPODARILO SA"));
+});
+
+const STOPPING = new Set();
+document.addEventListener("click", e => {
+  const b = e.target.closest && e.target.closest("[data-stop]");
+  if (!b || b.disabled) return;
+  const id = b.dataset.stop;
+  STOPPING.add(id); b.disabled = true; b.textContent = "ZASTAVUJEM";
+  fetch("/api/stop", {method: "POST", headers: {"Content-Type": "application/json", "X-Jarvis": "1"}, body: JSON.stringify({id})})
+    .then(r => { if (!r.ok) throw new Error(); setTimeout(() => STOPPING.delete(id), 15000); })
+    .catch(() => { STOPPING.delete(id); b.disabled = false; b.textContent = "NEPODARILO SA, SKÚS ZNOVA"; });
+});
+function renderSessions(S){
+  const rows = S.sessions || [];
+  if (!rows.length){ put("ses", '<div class="empty">Žiadna relácia Claude Code za posledných 8 hodín.</div>'); $("sesMeta").textContent = ""; return; }
+  let h = "";
+  for (const r of rows){
+    const meta = [esc(r.project)];
+    if (r.branch) meta.push(esc(r.branch));
+    if (r.model) meta.push(model(r.model));
+    if (r.voice) meta.push("hlasová úloha"); else if (r.entry) meta.push(ENTRY[r.entry] || esc(r.entry));
+    if (r.ctx_pct != null) meta.push('kontext<span class="ctxb"><i style="width:' + Math.min(100, r.ctx_pct) + '%"></i></span>' + Math.round(r.ctx_pct) + ' %');
+    else if (r.ctx) meta.push("kontext " + tok(r.ctx));
+    let right = SLAB[r.status] || r.status;
+    if (r.task && r.status !== "idle" && r.status !== "done"){
+      const busy = STOPPING.has(r.task);
+      right += '</span><button class="stopb" type="button" data-stop="' + esc(r.task) + '"' + (busy ? " disabled" : "") + '>' + (busy ? "ZASTAVUJEM" : "ZASTAVIŤ") + '</button><span hidden>';
+    }
+    h += '<div class="ses ' + r.status + '"><div class="hd"><span class="dot"></span><span class="ti">' + esc(r.title) + '</span><span class="stt">' + right + '</span></div>';
+    h += '<div class="mt">' + meta.join(" · ") + '</div>';
+    if (r.status === "idle"){ h += '<div class="mt">naposledy ' + T("ago", r.last) + '</div></div>'; continue; }
+    if (r.prompt) h += '<div class="pr">' + esc(r.prompt) + '</div>';
+    if (r.status === "working" || r.status === "quiet" || r.status === "stalled"){
+      const tl = r.tool ? '<b>' + esc(r.tool.name) + '</b>' + (r.tool.detail ? " · " + esc(r.tool.detail) : "") : (r.said ? esc(r.said) : "premýšľa");
+      h += '<div class="act">' + tl + '</div>';
+      const f = ["beží " + T("since", r.turn_start), pl(r.turn_tools, "krok", "kroky", "krokov")];
+      if (r.turn_errors) f.push(pl(r.turn_errors, "chyba nástroja", "chyby nástrojov", "chýb nástrojov"));
+      if (r.status === "quiet") f.push("ticho " + T("since", r.last) + ", dlhý krok alebo čaká na povolenie");
+      if (r.status === "stalled") f.push("bez pohybu " + T("since", r.last));
+      h += '<div class="mt">' + f.join(" · ") + '</div>';
+      if (r.agents && r.agents.length) h += '<div class="ag">' + pl(r.agents.length, "agent", "agenti", "agentov") + ": " + r.agents.map(a => esc(a.type) + (a.what ? " (" + esc(a.what) + ")" : "")).join(", ") + '</div>';
+    } else {
+      if (r.error) h += '<div class="act">' + esc(r.error) + '</div>';
+      else if (r.said) h += '<div class="act">' + esc(r.said) + '</div>';
+      h += '<div class="mt">' + (r.turn_end ? "dobehlo " + T("ago", r.turn_end) + " · " : "") + pl(r.turn_tools, "krok", "kroky", "krokov") + '</div>';
+    }
+    h += '</div>';
+  }
+  put("ses", h);
+  const w = S.working || 0;
+  $("sesMeta").textContent = w ? pl(w, "relácia pracuje", "relácie pracujú", "relácií pracuje") : "nič nebeží";
+}
+
+function renderDone(S){
+  const rows = doneRows(S);
+  if (!rows.length){ put("done", cut(S, "done") ? clearedNote(S, "done", "Zoznam") : '<div class="empty">Za posledných 36 hodín nič nedobehlo.</div>'); $("doneMeta").textContent = ""; return; }
+  let h = "";
+  for (const v of rows){
+    const cls = v.error ? "bad" : v.interrupted ? "warn" : "ok";
+    const lab = v.error ? "CHYBA" : v.interrupted ? "PRERUŠENÉ" : "HOTOVO";
+    const f = [pl(v.tools, "krok", "kroky", "krokov")];
+    if (v.nfiles) f.push(pl(v.nfiles, "súbor", "súbory", "súborov") + ": " + v.files.map(esc).join(", ") + (v.nfiles > v.files.length ? "…" : ""));
+    if (v.agents) f.push(pl(v.agents, "agent", "agenti", "agentov"));
+    if (v.errors) f.push(pl(v.errors, "chyba nástroja", "chyby nástrojov", "chýb nástrojov"));
+    if (v.extra) f.push(pl(v.extra, "doplnenie", "doplnenia", "doplnení"));
+    if (v.cost) f.push("$" + num(v.cost, 2));
+    h += '<div class="done"><div class="tm">' + hm(v.end) + '<small>' + (dayTag(v.end) || durShort(v.dur)) + '</small></div><div>'
+      + '<div class="hd"><span class="tag ' + cls + '">' + lab + '</span><b>' + esc(v.title) + '</b><span>' + esc(v.project) + (v.voice ? " · hlasová úloha" : "") + (dayTag(v.end) ? " · " + durShort(v.dur) : "") + '</span></div>'
+      + (v.prompt ? '<div class="pr">„' + esc(v.prompt) + '“</div>' : '')
+      + '<div class="rs">' + esc(v.error || v.result || "(bez záverečnej správy)") + '</div>'
+      + '<div class="ft">' + f.join(" · ") + '</div></div></div>';
+  }
+  put("done", h);
+  $("doneMeta").textContent = "dnes " + (S.done_today || 0);
+}
+
+function renderLog(S){
+  const lines = logRows(S), el = $("log");
+  const stick = el.scrollHeight - el.scrollTop - el.clientHeight < 40;
+  let h = "";
+  for (const l of lines){
+    let msg = l.msg;
+    if (msg.startsWith("[latency]")){            // dlhy vypis skrat na to podstatne
+      const g = k => { const x = new RegExp(k + "=([^ ]+)").exec(msg); return x && x[1] !== "None" ? x[1] : null; };
+      const fa = g("speech_end_to_first_audio") || g("speech_end_to_lookup_answer") || g("speech_end_to_effect");
+      msg = "[latency] cesta " + (g("route") || "?") + (fa ? " · odozva " + num(+fa) + " s" : "") + (g("first_token") ? " · prvé slovo " + num(+g("first_token")) + " s" : "");
+    }
+    const m = /^\[([^\]]+)\] ?(.*)$/s.exec(msg);
+    const cls = l.level === "ERROR" || l.level === "CRITICAL" ? "e" : l.level === "WARNING" || /fail|error|not registered|crash/i.test(l.msg) ? "w" : /^\[(heard|typed|task|ready)/.test(l.msg) ? "hl" : "";
+    h += '<div class="' + cls + '"><span class="tm">' + hms(l.ts) + '</span> ' + (m ? '<span class="tg">' + esc(m[1]) + '</span> ' + esc(m[2]) : esc(msg)) + '</div>';
+  }
+  if (put("log", h || (cut(S, "log") ? clearedNote(S, "log", "Denník") : '<div class="empty">Denník je prázdny.</div>')) && stick) el.scrollTop = el.scrollHeight;
+  $("logMeta").textContent = "app.log · posledných " + lines.length;
+}
+
+function renderAlerts(S){
+  const j = S.jarvis, s = S.system || {}, t = nowS(), out = [];
+  const W = (S.limits || {}).windows || {};
+  for (const [k, name] of [["five_hour", "5 hodín"], ["seven_day", "7 dní"]]){
+    const w = W[k];
+    if (w && w.pct >= 85 && !(w.resets && w.resets < t)) out.push({lv: w.pct >= 95 ? "bad" : "warn", text: "Limit " + name + " je na " + Math.round(w.pct) + " %", d: w.resets ? "obnoví sa " + T("until", w.resets) : ""});
+  }
+  for (const r of S.sessions || []){
+    if (r.status === "error") out.push({lv: "bad", text: "Relácia „" + r.title + "“ skončila chybou", d: esc(r.error)});
+    if (r.status === "quiet") out.push({lv: "warn", text: "Relácia „" + r.title + "“ je ticho", d: "možno čaká na tvoje povolenie · " + T("since", r.last)});
+  }
+  if (S.proc && S.proc.running) for (const a of j.alerts || []) out.push({lv: a.level === "bad" ? "bad" : "warn", text: a.text, d: (a.detail ? esc(a.detail) + " · " : "") + "naposledy " + T("ago", a.last)});
+  if (s.gpu_temp >= 86) out.push({lv: "warn", text: "Grafická karta má " + s.gpu_temp + " °C", d: ""});
+  if (s.ram >= 93) out.push({lv: "warn", text: "Pamäť RAM je takmer plná (" + Math.round(s.ram) + " %)", d: ""});
+  if (s.disk_free_gb != null && s.disk_free_gb < 15) out.push({lv: "warn", text: "Na disku C ostáva " + s.disk_free_gb + " GB", d: ""});
+  const mcp = ((j.run || {}).agent || {}).mcp || [], need = mcp.filter(m => m.status !== "ok" && m.status !== "connected");
+  if (S.proc && S.proc.running && need.length) out.push({lv: "info", text: pl(need.length, "MCP server agenta čaká na prihlásenie", "MCP servery agenta čakajú na prihlásenie", "MCP serverov agenta čaká na prihlásenie"),
+    d: esc(need.map(m => m.name.replace(/^plugin:[^:]+:/, "")).join(", "))});
+  let h = "";
+  for (const a of out) h += '<div class="al ' + a.lv + '"><span class="ic">' + (a.lv === "info" ? "i" : "!") + '</span><span>' + esc(a.text) + '</span>' + (a.d ? '<span class="d">' + a.d + '</span>' : '') + '</div>';
+  put("al", h || '<div class="allok">Všetko v poriadku, žiadne upozornenia.</div>');
+  const real = out.filter(a => a.lv !== "info").length;
+  $("alMeta").textContent = real ? String(real) : "";
+}
+
+let fails = 0;
+
+// ---- jadro: holograficka gula z ulomkov (WebGL) -------------------------------------------
+// Ulomky lezia na niekolkych sferach, kazdy pas sa toci inou rychlostou. Stav JARVISa meni
+// rychlost, nepokoj, farbu a jas; beziace ulohy pridavaju komety na obeznych drahach.
+const Orb = (() => {
+  const api = { set(){} };
+  const cv = document.getElementById("orb"), box = cv && cv.parentElement;
+  let gl = null;
+  try { gl = cv.getContext("webgl", {alpha: false, antialias: true, powerPreference: "low-power"}); } catch (_) {}
+  if (!gl){ if (box) box.classList.add("nogl"); return api; }
+
+  // -- geometria ------------------------------------------------------------------------
+  let sd = 20261111;
+  const R = () => { sd |= 0; sd = sd + 0x6D2B79F5 | 0; let t = Math.imul(sd ^ sd >>> 15, 1 | sd); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+  const rr = (a, b) => a + (b - a) * R();
+  const V = [];
+  const CORN = [[-1,-1],[1,-1],[1,1],[-1,-1],[1,1],[-1,1]];
+  function quad(c, u, v, seed, rot, kind, bright, t){
+    for (const q of CORN) V.push(c[0],c[1],c[2], u[0],u[1],u[2], v[0],v[1],v[2], q[0],q[1], seed, rot, kind, bright, t || 0);
+  }
+  const norm = a => { const l = Math.hypot(a[0],a[1],a[2]) || 1; return [a[0]/l,a[1]/l,a[2]/l]; };
+  const cross = (a, b) => [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]];
+  const mul = (a, k) => [a[0]*k, a[1]*k, a[2]*k];
+  function frame(dir){
+    let east = cross([0,1,0], dir);
+    if (Math.hypot(east[0],east[1],east[2]) < 1e-3) east = [1,0,0];
+    east = norm(east);
+    return [east, norm(cross(dir, east))];
+  }
+  const at = (lat, lon) => [Math.cos(lat)*Math.cos(lon), Math.sin(lat), Math.cos(lat)*Math.sin(lon)];
+
+  // Hlavna rovina je XZ (os Y). Vsetko sa toci okolo Y a cele je naklonene k divakovi,
+  // takze rovnobezky a prstence vyzeraju ako sustredne kruhy okolo oka v strede.
+  const flat = (r, a, y) => [[r * Math.cos(a), y || 0, r * Math.sin(a)], [-Math.sin(a), 0, Math.cos(a)], [Math.cos(a), 0, Math.sin(a)]];
+  // segment prstenca v rovine: dlzka po obvode, hrubka v smere polomeru
+  function arcSeg(r, a, da, th, seed, rot, bright, y){
+    const f = flat(r, a + da / 2, y);
+    quad(f[0], mul(f[1], r * da / 2), mul(f[2], th), seed, rot, 0, bright);
+  }
+  // radialna ciarka v rovine
+  function tick(r0, r1, a, th, seed, rot, bright, y){
+    const f = flat((r0 + r1) / 2, a, y);
+    quad(f[0], mul(f[2], (r1 - r0) / 2), mul(f[1], th), seed, rot, 0, bright);
+  }
+
+  // -- oko: jasny prstenec v strede a tesne prstence okolo ----------------------------
+  for (let k = 0; k < 96; k++) arcSeg(0.105, k / 96 * 6.2832, 6.2832 / 96, 0.011, 0.5, 0.9, 1.5);
+  for (let k = 0; k < 72; k++) arcSeg(0.072, k / 72 * 6.2832, 6.2832 / 72, 0.0028, 0.3, -1.4, 0.9);
+  quad([0, 0, 0], [0.2, 0, 0], [0, 0, 0.2], 0.5, 0, 1, 0.42);                     // mäkka ziara oka
+  [[0.145, 0.0026, 1.2, 40, 0.7], [0.178, 0.0045, -0.8, 24, 0.55], [0.215, 0.0022, 0.6, 60, 0.8], [0.262, 0.006, -0.5, 16, 0.5]]
+    .forEach(([r, th, rot, n, fill]) => {
+      for (let k = 0; k < n; k++) if (R() < fill + 0.25) arcSeg(r, k / n * 6.2832, 6.2832 / n * rr(0.5, 0.9), th, R(), rot, rr(0.75, 1.25));
+    });
+  // cifernik: husté radialne dieliky a druhy rad dlhsich
+  for (let k = 0; k < 120; k++) tick(0.30, 0.30 + (k % 5 ? 0.014 : 0.034), k / 120 * 6.2832, 0.0016, R(), 0.35, k % 5 ? 0.6 : 1.1);
+  for (let k = 0; k < 48; k++) if (R() < 0.8) tick(0.405, 0.405 + rr(0.02, 0.06), k / 48 * 6.2832, 0.0022, R(), -0.3, rr(0.5, 1.0));
+
+  // -- sustredne prerusovane prstence v rovine, kazdy inou rychlostou ------------------
+  [0.36, 0.44, 0.50, 0.57, 0.65, 0.73, 0.82, 0.90, 0.98, 1.06].forEach((r, i) => {
+    const rot = (i % 2 ? -1 : 1) * rr(0.25, 0.9), th = rr(0.0022, 0.0055), y = rr(-0.03, 0.03);
+    for (let a = 0; a < 6.2832;){
+      const da = rr(0.05, 0.42);
+      if (R() < 0.62) arcSeg(r, a, da * rr(0.55, 0.95), th, R(), rot, rr(0.5, 1.2), y);
+      else if (R() < 0.35) arcSeg(r, a, da * 0.5, th * rr(4, 9), R(), rot, rr(0.08, 0.16), y);   // matny blok
+      a += da;
+    }
+  });
+
+  // -- plosne spoje: lomene cesty medzi prstencami ------------------------------------
+  for (let i = 0; i < 70; i++){
+    let r = rr(0.45, 1.0), a = rr(0, 6.2832);
+    const rot = [0.3, -0.45, 0.6][i % 3], seed = R(), bright = rr(0.45, 0.95), y = rr(-0.02, 0.02), steps = 2 + Math.floor(R() * 4);
+    for (let k = 0; k < steps; k++){
+      if (k % 2 === 0){ const da = rr(0.05, 0.22) * (R() < 0.5 ? -1 : 1); arcSeg(r, Math.min(a, a + da), Math.abs(da), 0.0022, seed, rot, bright, y); a += da; }
+      else { const r1 = Math.max(0.4, Math.min(1.1, r + rr(0.04, 0.13) * (R() < 0.5 ? -1 : 1))); tick(Math.min(r, r1), Math.max(r, r1), a, 0.0022, seed, rot, bright, y); r = r1; }
+    }
+    const f = flat(r, a, y); quad(f[0], mul(f[1], 0.007), mul(f[2], 0.007), seed, rot, 2, 1.1);       // bod na konci cesty
+  }
+
+  // -- luce zo stredu: tenke rovne vlakna, vacsina blizko roviny ------------------------
+  for (let i = 0; i < 54; i++){
+    const inPlane = R() < 0.65, a = rr(0, 6.2832), el = inPlane ? rr(-0.16, 0.16) : rr(-1.2, 1.2);
+    const dir = [Math.cos(el) * Math.cos(a), Math.sin(el), Math.cos(el) * Math.sin(a)];
+    const r0 = rr(0.12, 0.2), r1 = rr(0.55, 1.22), mid = mul(dir, (r0 + r1) / 2), half = mul(dir, (r1 - r0) / 2);
+    const n1 = frame(dir)[0], n2 = norm(cross(dir, n1)), th = rr(0.0014, 0.0034), seed = R(), rot = (R() < 0.5 ? -1 : 1) * rr(0.12, 0.4);
+    const bright = i < 9 ? rr(1.1, 1.5) : rr(0.35, 0.9);
+    quad(mid, half, mul(n1, th), seed, rot, 0, bright);
+    quad(mid, half, mul(n2, th), seed, rot, 0, bright);
+    const tip = mul(dir, r1), f = frame(dir); quad(tip, mul(f[0], 0.009), mul(f[1], 0.009), seed, rot, 2, bright);
+  }
+
+  // -- velke naklonene obezne prstence -------------------------------------------------
+  for (let i = 0; i < 4; i++){
+    const n = norm([rr(-1, 1), rr(0.25, 0.9), rr(-1, 1)]), e1 = frame(n)[0], e2 = norm(cross(n, e1));
+    const rad = rr(0.86, 1.14), rot = (i % 2 ? -1 : 1) * rr(0.2, 0.55), th = rr(0.003, 0.007);
+    for (let a = 0; a < 6.2832;){
+      const da = rr(0.03, 0.2), on = R() < 0.7, br = rr(0.6, 1.25);
+      for (let b = a; on && b < a + da * 0.9; b += 0.03){
+        const dir = norm([e1[0]*Math.cos(b)+e2[0]*Math.sin(b), e1[1]*Math.cos(b)+e2[1]*Math.sin(b), e1[2]*Math.cos(b)+e2[2]*Math.sin(b)]);
+        quad(mul(dir, rad), mul(norm(cross(n, dir)), 0.016 * rad), mul(n, th), 0.2 + i * 0.17, rot, 0, br);
+      }
+      a += da;
+    }
+  }
+
+  // -- riedka gula okolo: rovnobezkove ciarky na dvoch sferach -------------------------
+  [1.0, 0.78].forEach((rad, si) => {
+    for (let b = 0; b < 9; b++){
+      const lat = (R() < 0.5 ? -1 : 1) * rr(0.2, 1.25), rot = (si ? -1 : 1) * rr(0.3, 1.1), circ = Math.cos(lat);
+      for (let lon = 0; lon < 6.2832;){
+        const step = rr(0.04, 0.2) / Math.max(0.35, circ);
+        if (R() < 0.5){
+          const dir = at(lat, lon + step / 2), f = frame(dir);
+          quad(mul(dir, rad), mul(f[0], step * circ * rad * rr(0.4, 0.9) / 2), mul(f[1], rr(0.002, 0.005)), R(), rot, 0, rr(0.35, 0.9));
+        }
+        lon += step;
+      }
+    }
+  });
+
+  // -- iskry (ostre body) a zopar makkych svetiel v hlbke --------------------------------
+  for (let i = 0; i < 420; i++){
+    const dir = norm([rr(-1, 1), rr(-0.7, 0.7), rr(-1, 1)]), f = frame(dir), rad = Math.pow(R(), 0.6) * 0.95 + 0.22, sz = rr(0.0035, 0.009);
+    quad(mul(dir, rad), mul(f[0], sz), mul(f[1], sz), R(), (R() < 0.5 ? -1 : 1) * rr(0.2, 1.2), 2, rr(0.5, 1.2));
+  }
+  for (let i = 0; i < 70; i++){
+    const dir = norm([rr(-1, 1), rr(-0.6, 0.6), rr(-1, 1)]), f = frame(dir), rad = rr(0.3, 1.2), sz = rr(0.014, 0.034);
+    quad(mul(dir, rad), mul(f[0], sz), mul(f[1], sz), R(), (R() < 0.5 ? -1 : 1) * rr(0.15, 0.6), 1, rr(0.14, 0.3));
+  }
+
+  // -- komety: bezia po obeznych drahach, ked sa pracuje --------------------------------
+  for (let i = 0; i < 6; i++){
+    const n = norm([rr(-1, 1), rr(0.3, 1), rr(-1, 1)]), e1 = frame(n)[0], e2 = norm(cross(n, e1)), rad = rr(1.0, 1.18), seed = R(), N = 90;
+    for (let k = 0; k < N; k++){
+      const a = k / N * Math.PI * 2;
+      const dir = [e1[0]*Math.cos(a)+e2[0]*Math.sin(a), e1[1]*Math.cos(a)+e2[1]*Math.sin(a), e1[2]*Math.cos(a)+e2[2]*Math.sin(a)];
+      quad(mul(dir, rad), mul(norm(cross(n, dir)), 0.04), mul(n, 0.011), seed, i % 2 ? -1 : 1, 3, 1.6, k / N);
+    }
+  }
+  const STRIDE = 16, COUNT = V.length / STRIDE;
+
+  // -- shadery ---------------------------------------------------------------------------
+  const VS = `
+attribute vec3 aC, aU, aV; attribute vec2 aQ; attribute vec4 aP; attribute float aT;
+uniform float uTime, uSpin, uEnergy, uPulse, uExpand, uForm, uWork, uTilt, uRoll, uLite;
+varying vec2 vQ; varying float vA, vKind, vHot;
+mat3 rotY(float a){ float c = cos(a), s = sin(a); return mat3(c, 0., -s, 0., 1., 0., s, 0., c); }
+mat3 rotX(float a){ float c = cos(a), s = sin(a); return mat3(1., 0., 0., 0., c, s, 0., -s, c); }
+mat3 rotZ(float a){ float c = cos(a), s = sin(a); return mat3(c, s, 0., -s, c, 0., 0., 0., 1.); }
+void main(){
+  float seed = aP.x, kind = aP.z;
+  float r = length(aC);
+  vec3 dir = aC / max(r, 0.0001);
+  float wob = sin(uTime * (0.7 + seed * 1.9) + seed * 40.0);
+  float rad = r * (1.0 + uExpand * 0.10 * smoothstep(0.2, 1.0, r) + uEnergy * 0.03 * wob
+                       + uPulse * 0.06 * sin(uTime * 8.0 - r * 7.0));
+  vec3 scatter = dir * (r * 0.3 + 1.7 * fract(seed * 13.7)) + vec3(0., (fract(seed * 5.3) - 0.5) * 1.6, 0.);
+  float form = clamp(uForm * 1.35 - fract(seed * 7.1) * 0.35, 0., 1.);
+  form = form * form * (3. - 2. * form);
+  vec3 c = mix(scatter, dir * rad, form);
+  vec3 p = c + aU * aQ.x + aV * aQ.y;
+  float spin = kind > 2.5 ? 0.0 : uSpin * aP.y;
+  p = rotZ(uRoll) * rotX(uTilt) * rotY(spin) * p;
+  float s = 2.45 / (3.4 - p.z);
+  gl_Position = vec4(p.xy * s, p.z * 0.1, 1.0);
+  float depth = clamp((p.z + 1.25) / 2.5, 0., 1.);
+  float flick = 0.7 + 0.3 * sin(uTime * (2.0 + 7.0 * fract(seed * 3.1)) + seed * 50.0);
+  float a = aP.w * mix(0.28, 1.0, depth) * mix(1.0, flick, 0.1 + uEnergy * 0.45) * mix(0.3, 1.0, form);
+  if (kind > 2.5){
+    float head = fract(uTime * (0.16 + 0.12 * fract(seed * 9.0)) * aP.y + seed);
+    float d = fract(head - aT);
+    a = aP.w * pow(1.0 - d, 9.0) * uWork * mix(0.35, 1.0, depth);
+  }
+  if (uLite > 0.5 && kind < 1.5) gl_Position = vec4(2., 2., 2., 1.);          // s videom sa ulomky nekreslia
+  vA = a; vQ = aQ; vKind = kind; vHot = clamp(aP.w - 0.55, 0., 1.) + (kind > 2.5 ? 0.6 : 0.0);
+}`;
+  const FS = `
+precision mediump float;
+varying vec2 vQ; varying float vA, vKind, vHot;
+uniform vec3 uColA, uColB; uniform float uGain;
+void main(){
+  float a = vA;
+  if (vKind > 0.5){ float d = dot(vQ, vQ); a *= vKind > 1.5 && vKind < 2.5 ? smoothstep(1.0, 0.35, d) : exp(-d * 3.6); }
+  vec3 col = mix(uColA, uColB, vHot);
+  gl_FragColor = vec4(col * a * uGain, 1.0);
+}`;
+  function sh(type, src){ const o = gl.createShader(type); gl.shaderSource(o, src); gl.compileShader(o);
+    if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o)); return o; }
+  let prog, U = {};
+  try {
+    prog = gl.createProgram(); gl.attachShader(prog, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FS));
+    gl.linkProgram(prog); if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+  } catch (e) { console.error("orb", e); box.classList.add("nogl"); return api; }
+  gl.useProgram(prog);
+  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(V), gl.STATIC_DRAW);
+  let off = 0;
+  for (const [name, size] of [["aC",3],["aU",3],["aV",3],["aQ",2],["aP",4],["aT",1]]){
+    const loc = gl.getAttribLocation(prog, name);
+    if (loc >= 0){ gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, size, gl.FLOAT, false, STRIDE * 4, off * 4); }
+    off += size;
+  }
+  for (const n of ["uTime","uSpin","uEnergy","uPulse","uExpand","uForm","uWork","uTilt","uRoll","uLite","uColA","uColB","uGain"]) U[n] = gl.getUniformLocation(prog, n);
+  gl.disable(gl.DEPTH_TEST); gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE); gl.clearColor(0, 0, 0, 1);
+
+  // -- stavy -----------------------------------------------------------------------------
+  const AMB = [1.0, 0.56, 0.11], GOLD = [1.0, 0.88, 0.60];
+  const ST = {
+    offline:   {spin: 0.02, energy: 0.0,  pulse: 0, expand: 0, form: 0.16, gain: 0.7,  a: [0.46, 0.38, 0.29], b: [0.62, 0.56, 0.48]},
+    starting:  {spin: 1.0,  energy: 0.6,  pulse: 0, expand: 0, form: 0.7,  gain: 1.5, a: AMB, b: GOLD},
+    idle:      {spin: 0.15, energy: 0.12, pulse: 0, expand: 0, form: 1,    gain: 2.0,  a: AMB, b: GOLD},
+    listening: {spin: 0.30, energy: 0.28, pulse: 0, expand: 1, form: 1,    gain: 2.4,  a: [1.0, 0.70, 0.28], b: [1.0, 0.97, 0.86]},
+    thinking:  {spin: 1.35, energy: 1.0,  pulse: 0, expand: 0.25, form: 1, gain: 2.3, a: AMB, b: GOLD},
+    speaking:  {spin: 0.42, energy: 0.3,  pulse: 1, expand: 0.35, form: 1, gain: 2.5, a: [1.0, 0.64, 0.18], b: [1.0, 0.94, 0.74]},
+    approval:  {spin: 0.24, energy: 0.45, pulse: 0.5, expand: 0, form: 1,  gain: 2.2,  a: [1.0, 0.33, 0.08], b: [1.0, 0.68, 0.36]},
+    muted:     {spin: 0.05, energy: 0.0,  pulse: 0, expand: 0, form: 1,    gain: 0.75,  a: [0.62, 0.50, 0.36], b: [0.78, 0.70, 0.58]},
+  };
+  const cur = {spin: 0.15, energy: 0, pulse: 0, expand: 0, form: 0, gain: 0, a: AMB.slice(), b: GOLD.slice(), work: 0};
+  let tgt = ST.offline, work = 0, tasks = 0;
+  // video jadro: ak sa nacita, WebGL kresli len iskry a komety a video sa spomali alebo zrychli podla stavu
+  const vid = document.getElementById("brain"); let lite = false;
+  const RATE = {offline: 0, muted: 0.5, starting: 1.6, idle: 1.0, listening: 1.2, thinking: 2.2, speaking: 1.4, approval: 0.9};
+  if (vid){
+    const on = () => { lite = true; box.classList.add("vid"); };
+    for (const ev of ["loadeddata", "canplay", "playing"]) vid.addEventListener(ev, on);
+    if (vid.readyState >= 2) on();
+    vid.muted = true; const go = () => vid.play().catch(() => {}); go(); setTimeout(go, 1500);      // istota, ze sa slucka rozbehne
+    vid.addEventListener("error", () => { lite = false; box.classList.remove("vid"); });
+  }
+  api.set = (state, working, running) => {
+    tgt = ST[state] || ST.idle; work = working; tasks = running;
+    document.body.classList.toggle("busy", running > 0);
+    if (vid && lite){
+      const r = (RATE[state] != null ? RATE[state] : 1) * (running > 0 && state !== "offline" ? 1.5 : 1);
+      if (r <= 0){ if (!vid.paused) vid.pause(); }
+      else { if (Math.abs(vid.playbackRate - r) > 0.01) vid.playbackRate = Math.min(4, r); if (vid.paused) vid.play().catch(() => {}); }
+    }
+  };
+
+  const still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let angle = 0, last = 0, t0 = performance.now(), w = 0, h = 0;
+  function size(){
+    const r = cv.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
+    const nw = Math.max(2, Math.round(r.width * d)), nh = Math.max(2, Math.round(r.height * d));
+    if (nw !== w || nh !== h){ w = cv.width = nw; h = cv.height = nh; gl.viewport(0, 0, w, h); }
+  }
+  function draw(now){
+    requestAnimationFrame(draw);
+    const calm = tgt === ST.idle || tgt === ST.offline || tgt === ST.muted;
+    if (document.hidden || now - last < (calm && !tasks ? 30 : 14)) return;   // v pokoji ~30 snimok za sekundu, pri praci plnych 60
+    const dt = Math.min(0.1, (now - last) / 1000 || 0.03); last = now;
+    size();
+    const k = 1 - Math.exp(-dt * 2.6), busy = Math.min(1, tasks), wk = Math.min(1, (work + 2 * tasks) / 3);
+    const online = tgt !== ST.offline && tgt !== ST.muted;
+    for (const key of ["pulse", "expand", "form", "gain"]) cur[key] += (tgt[key] - cur[key]) * k;
+    cur.spin += (tgt.spin + (online ? 0.75 * busy : 0) - cur.spin) * k;       // hlasova uloha bezi: gula sa roztoci
+    cur.energy += (tgt.energy + (online ? 0.45 * busy : 0) - cur.energy) * k;
+    cur.work += ((online ? wk : 0) - cur.work) * k;
+    for (let i = 0; i < 3; i++){ cur.a[i] += (tgt.a[i] - cur.a[i]) * k; cur.b[i] += (tgt.b[i] - cur.b[i]) * k; }
+    const t = (now - t0) / 1000, slow = still ? 0.15 : 1;
+    angle += cur.spin * dt * slow;
+    const voice = 0.5 + 0.5 * Math.sin(t * 11.0) * Math.sin(t * 3.7 + 1.3);                    // napodobenina hlasu
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.uniform1f(U.uTime, still ? 0 : t); gl.uniform1f(U.uSpin, angle);
+    gl.uniform1f(U.uEnergy, Math.min(1.2, cur.energy) * slow); gl.uniform1f(U.uPulse, cur.pulse * voice * slow);
+    gl.uniform1f(U.uLite, lite ? 1 : 0);
+    gl.uniform1f(U.uExpand, cur.expand); gl.uniform1f(U.uForm, cur.form); gl.uniform1f(U.uWork, cur.work);
+    gl.uniform1f(U.uTilt, 1.02 + 0.10 * Math.sin(t * 0.17) * slow); gl.uniform1f(U.uRoll, -0.22 + 0.10 * Math.sin(t * 0.11) * slow);
+    gl.uniform3fv(U.uColA, cur.a); gl.uniform3fv(U.uColB, cur.b);
+    gl.uniform1f(U.uGain, cur.gain * (0.92 + 0.08 * Math.sin(t * 1.7)));
+    gl.drawArrays(gl.TRIANGLES, 0, COUNT);
+  }
+  cv.addEventListener("webglcontextlost", e => { e.preventDefault(); box.classList.add("nogl"); });
+  requestAnimationFrame(draw);
+  return api;
+})();
+
+// Ikonu okna na paneli uloh animuje server (ikona.py). Stranka ma len staticky emblem v <link rel=icon>.
+
+let UIV = 0;
+async function poll(){
+  try {
+    const r = await fetch("/api/state", {cache: "no-store"});
+    const S = await r.json();
+    if (S.ui && UIV && S.ui !== UIV){ location.reload(); return; }
+    UIV = S.ui || UIV;
+    LAST = S;
+    fails = 0; document.body.classList.remove("lost");
+    for (const f of [renderTop, renderCore, renderSys, renderConv, renderLat, renderLimits, renderSessions, renderDone, renderLog, renderAlerts]){
+      try { f(S); } catch (e) { console.error(f.name, e); }
+    }
+    tick();
+  } catch (e) {
+    if (++fails >= 3){ document.body.classList.add("lost"); document.body.dataset.state = "offline"; $("stLabel").textContent = "BEZ SPOJENIA"; $("stSub").textContent = "server dashboardu neodpovedá"; }
+  }
+}
+tick(); poll();
+setInterval(poll, 1000);
+</script>
+</body>
+</html>

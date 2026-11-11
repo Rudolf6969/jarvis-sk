@@ -1,0 +1,37 @@
+# V tomto priecinku zije aj osobna instalacia (nastavenia, rozhovory, modely).
+# Preto je vsetko ignorovane a do repozitara ide len to, co je tu vymenovane.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/ZMENY.md
+!/INSTALUJ.bat
+!/AKTUALIZUJ.bat
+!/SPUSTIT-JARVIS.bat
+!/VERZIA-HEY-CLAUDE.txt
+!/jarvis-ulohy-do-prace.patch
+!/instalacia/
+!/vzory/
+!/skills/
+!/voice/
+!/dashboard/
+
+/voice/*
+!/voice/edge-lukas.json
+!/voice/edge-piper-pkg/
+/voice/edge-piper-pkg/*
+!/voice/edge-piper-pkg/edge_piper.py
+!/voice/edge-piper-pkg/pyproject.toml
+
+/dashboard/*
+!/dashboard/server.py
+!/dashboard/index.html
+!/dashboard/jadro.mp4
+!/dashboard/jadro.png
+!/dashboard/jarvis.ico
+!/dashboard/ikona.py
+!/dashboard/ikona.png
+!/dashboard/SPUSTIT-DASHBOARD.bat
+!/dashboard/CITAJ.txt
+
+__pycache__/
