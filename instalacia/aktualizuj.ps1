@@ -35,7 +35,7 @@ if ($Od -ne $nove) {
 Head "1/3  hey-claude a slovenske upravy"
 $Sha = Citaj-Sha
 $head = Git-Text @("-C", $Repo, "rev-parse", "HEAD")
-$sedi = ($head -eq $Sha) -and ((Git-Kod @("-C", $Repo, "apply", "--reverse", "--check", $Patch)) -eq 0)
+$sedi = ($head -eq $Sha) -and ((Git-Kod @("-C", $Repo, "apply", "--unidiff-zero", "--reverse", "--check", $Patch)) -eq 0)
 $zmenaVerzie = $false
 if ($sedi) { Ok "hey-claude je aktualny" }
 else {

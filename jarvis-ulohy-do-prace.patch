@@ -2,35 +2,20 @@ diff --git a/heyclaude/__main__.py b/heyclaude/__main__.py
 index 782af42..ab0825b 100644
 --- a/heyclaude/__main__.py
 +++ b/heyclaude/__main__.py
-@@ -384,6 +384,12 @@ def main(argv=None, harness=None):
-             if msg == "restart":
-                 restart()
-                 return
+@@ -386,0 +387,6 @@
 +            if msg.startswith("stop-task"):          # ZMENENE (lokalna uprava): tlacidlo STOP na dashboarde
 +                asst.external_stop(msg[len("stop-task"):].strip())
 +                return
 +            if msg.startswith("ask "):               # ZMENENE (lokalna uprava): pisana poziadavka zvonka (testy)
 +                asst.submit_text(msg[4:])
 +                return
-             if island:
-                 island.show()
-                 island.raise_()
 diff --git a/heyclaude/assistant.py b/heyclaude/assistant.py
 index 41b0470..359306e 100644
 --- a/heyclaude/assistant.py
 +++ b/heyclaude/assistant.py
-@@ -410,6 +410,7 @@ class Assistant:
-         self.push_tasks()
-         self.set_mode("loading", "loading brain…")
-         self.brain = Brain(c)
+@@ -412,0 +413 @@
 +        self.brain.has_running = lambda: bool(self.tasks.running())    # ZMENENE (lokalna uprava): pre "zastav to"
-         self._setup_hooks()
-         try:
-             from .undo import UndoStack
-@@ -756,9 +757,11 @@ class Assistant:
-         if t.id in self._user_stopped:          # "stop the task": already answered
-             self._user_stopped.discard(t.id)
-             return
+@@ -759,3 +760,5 @@
 -        verb = {"done": "is done", "failed": "failed", "stopped": "was stopped"}.get(t.status, "ended")
 -        msg = f"Your {t.project} task {verb}. {t.summary}"
 -        self.announce(msg, about=f"{t.project} task: {t.prompt}"[:160])
@@ -39,47 +24,24 @@ index 41b0470..359306e 100644
 +                "stopped": "Úloha bola zastavená."}.get(t.status, "Úloha skončila.")
 +        msg = f"{verb} {t.summary}"
 +        self.announce(msg, about=f"úloha: {t.prompt}"[:160])
-         if self.brain.convo is not None:
-             self.brain.convo.add("", msg, "local", task_id=t.id)
-         self._arm_followup()     # "what did it change?" works without the wake word
-@@ -1319,19 +1322,19 @@ class Assistant:
-     def _start_task(self, project, task):
-         if not project:
-             names = ", ".join(self.cfg["projects"]) or "none yet"
+@@ -1322 +1325 @@
 -            self._say(f"Which project should that run in? I know {names}.")
 +            self._say(f"Do ktorého projektu to mám dať? Poznám {names}.")     # ZMENENE: po slovensky
-             return None
-         path = self.cfg["projects"][project]
-         try:
-             ctx = self.brain.convo.task_context() if self.brain.convo is not None else ""
-             t = self.tasks.spawn(project, path, task, context=ctx)
-         except Exception as e:
+@@ -1329 +1332 @@
 -            self._say(f"I couldn't start it: {e}.")
 +            self._say(f"Nepodarilo sa mi to spustiť: {e}.")
-             return None
-         self.pending_tasks += 1
-         self._last_spawn = (t.id, self.gen)
-         print(f"[task {t.id}] started in {path}: {task}")
+@@ -1334 +1337 @@
 -        self._say(f"Okay, starting that in {project}. I'll tell you when it's done.")
 +        self._say("Dobre, púšťam sa do toho. Dám vedieť, keď to bude hotové.")
-         self.push_tasks()
-         return t.id
- 
-@@ -1362,31 +1365,42 @@ class Assistant:
-         return t.id
- 
-     def _stop_task(self, ref):
+@@ -1364,0 +1368 @@
 +        # ZMENENE (lokalna uprava): po slovensky; "prestan" bez upresnenia zastavi vsetko, co bezi
-         run = self.tasks.running()
-         if not run:
+@@ -1367 +1371 @@
 -            self._say("Nothing is running.")
 +            self._say("Nič nebeží.")
-             return None
+@@ -1369 +1373 @@
 -        if ref == "all":
 +        if ref == "all" or (not ref and len(run) > 1):
-             for t in run:
-                 self._user_stopped.add(t.id)
-                 self.tasks.stop(t.id)
+@@ -1373,5 +1377,2 @@
 -            self._say(f"Stopped {len(run)} task{'s' if len(run) != 1 else ''}.")
 -            return None
 -        if not ref and len(run) > 1:
@@ -87,20 +49,13 @@ index 41b0470..359306e 100644
 -            self._say(f"{len(run)} are running. Which one, {names}?")
 +            self._say("Zastavené." if len(run) == 1 else f"Zastavil som všetky bežiace úlohy, bolo ich {len(run)}.")
 +            self.push_tasks()
-             return None
-         t = self._find_task(ref, running=True) if ref else run[0]
-         if t is None:
+@@ -1381 +1382 @@
 -            self._say("I couldn't find a running task like that.")
 +            self._say("Takú bežiacu úlohu som nenašiel.")
-             return None
-         self._user_stopped.add(t.id)
-         self.tasks.stop(t.id)
-         print(f"[task {t.id}] stopped by voice")
+@@ -1386 +1387 @@
 -        self._say(f"Stopped the {t.project} task.")
 +        self._say("Zastavené.")
-         self.push_tasks()
-         return t.id
- 
+@@ -1389,0 +1391,13 @@
 +    def external_stop(self, ref: str = ""):
 +        """ZMENENE (lokalna uprava): zastavenie z dashboardu (sprava "stop-task <id|all>")."""
 +        if self.tasks is None:
@@ -114,44 +69,26 @@ index 41b0470..359306e 100644
 +            self.push_tasks()
 +            self.announce("Úlohu som zastavil." if len(run) == 1 else "Úlohy som zastavil.", about="dashboard")
 +
-     def _resume_task(self, ref):
-         """'Resume the last task in a terminal': a console running claude --resume in its folder."""
-         t = self._find_task(ref) if self.tasks.tasks else None
-@@ -1648,10 +1662,14 @@ class Assistant:
-         run = self.tasks.running()
-         if not run:
-             done = [t for t in self.tasks.tasks.values() if t.status != "running"][-1:]
+@@ -1651 +1665,4 @@
 -            self._say("Nothing is running." + (f" The last one, in {done[0].project}, {done[0].status}." if done else ""))
 +            # ZMENENE (lokalna uprava): stav po slovensky, aj s tym, co robi posledna a co dobehlo
 +            last = {"done": "je hotová", "failed": "zlyhala", "stopped": "bola zastavená"}
 +            self._say("Teraz nič nebeží." + (f" Posledná úloha {last.get(done[0].status, 'skončila')}. {done[0].summary}"
 +                                             if done else ""))
-             return
+@@ -1653,2 +1670,3 @@
 -        parts = [f"{t.project} is {('on ' + t.activity) if t.activity else 'starting'}" for t in run]
 -        self._say(f"{len(run)} running. " + "; ".join(parts) + ".")
 +        parts = [f"{t.prompt.rstrip('.')}. Práve: {t.activity or 'rozbieha sa'}" for t in run]
 +        head = "Beží jedna úloha. " if len(run) == 1 else f"Bežia {len(run)} úlohy. "
 +        self._say(head + " Ďalšia: ".join(parts) + ".")
- 
-     def _log_timing(self, tm):
-         def d(a, b):
-@@ -1671,7 +1689,7 @@ class Assistant:
-             if tm.get("first_audio") else None,
-             stt_reused=tm.get("stt_reused"), stt_device=tm.get("stt_device"),
-             voice=tm.get("voice"), source=tm.get("source"),
+@@ -1674 +1692 @@
 -            text=tm["text"], reply=tm.get("reply", "")[:120],
 +            text=tm["text"], reply=tm.get("reply", "")[:2000],     # ZMENENE (lokalna uprava): cela odpoved do zaznamu (bolo 120 znakov)
-         )
-         self.timings.append(row)
-         print("[latency] " + "  ".join(f"{k}={v}" for k, v in row.items() if k not in ("text", "reply", "when")))
 diff --git a/heyclaude/brain.py b/heyclaude/brain.py
 index 2706ac0..d5e01be 100644
 --- a/heyclaude/brain.py
 +++ b/heyclaude/brain.py
-@@ -96,6 +96,30 @@ _TASK_RE = re.compile(
- )
- _STATUS_RE = re.compile(r"\b(how are|status of|what are|how's|hows|check on)\b.*\b(tasks?|jobs?)\b", re.I)
- _NOOP_RE = re.compile(r"^(never ?mind|cancel|stop|nothing|forget it)[.!]?$", re.I)
+@@ -98,0 +99,24 @@
 +# ZMENENE (lokalna uprava): slovenske zastavenie ulohy a otazka na stav. Hudba, video a rec sem nepatria.
 +_SK_STOP_RE = re.compile(
 +    r"^(?:(?:jarvis|hej|pros[ií]m|ok(?:ej)?|dobre|tak|u[zž])[,\s]+)*"
@@ -176,38 +113,20 @@ index 2706ac0..d5e01be 100644
 +    r"\bna [cč]om (?:pr[aá]ve |teraz )?(?:rob[ií][sš]|pracuje[sš])\b|\bstav [uú]loh|[cč]o (?:ti |teraz |pr[aá]ve )?be[zž][ií]\b|"
 +    r"\bu[zž] (?:si|je to|to je|to m[aá][sš]) hotov|\bako (?:ide|pokra[cč]uje) (?:t[aá] )?[uú]loha\b|"
 +    r"\bkde (?:si|sme) s t[yý]m\b)", re.I)
- # Questions that obviously need the user's own data / live info -> tier (b) directly.
- _LOOKUP_RE = re.compile(
-     r"\b(telegram|gmail|e-?mails?|inbox|calendar|schedule|meetings?|appointments?|drive|"
-@@ -171,6 +195,11 @@ def local_route(text: str, projects: Projects):
-         return ("undo",)
-     if _FRESH_RE.match(t):
-         return ("fresh",)
+@@ -173,0 +198,5 @@
 +    # ZMENENE (lokalna uprava): po slovensky "prestan to robit / zastav to" a "ako to ide / co robis"
 +    if _SK_STOP_RE.match(t):
 +        return ("task_stop", "all" if re.search(r"v[sš]etk", t, re.I) else "")
 +    if _SK_STATUS_RE.search(t):
 +        return ("status",)
-     m = _TSTOP_RE.match(t)
-     if m:
-         ref = (m.group("ref2") or m.group("ref") or "").strip()
-@@ -193,7 +222,11 @@ def local_route(text: str, projects: Projects):
-     if not m:
-         if _PC_RE.search(t):
-             return ("control", t)
+@@ -196 +225,5 @@
 -        if _LOOKUP_RE.search(t):
 +        # ZMENENE (lokalna uprava): "uloz / vytvor / nacen ..." nie je otazka pre agenta, aj ked
 +        # veta obsahuje slovo ako email; nech o nej rozhodne model (TASK alebo LOOKUP)
 +        if _LOOKUP_RE.search(t) and not re.search(
 +                r"\b(?:ulo[žz]|nace[nň]|ponuk|vytvor|priprav|vyrob|exportuj|skop[ií]ruj|presu[nň]|daj mi|"
 +                r"uprav|oprav|dokon[cč]i|sprav|n[aá]jdi|zisti|presk[uú]maj)", t, re.I):
-             return ("lookup", t)
-         return None
-     rest = m.group("rest").strip()
-@@ -219,6 +252,18 @@ def _strip_lead(rest: str, key: str) -> str:
-     return tail or rest
- 
- 
+@@ -221,0 +255,12 @@
 +def persona() -> str:
 +    """ZMENENE (lokalna uprava): osobnost asistenta zo suboru OSOBNOST.md o priecinok vyssie
 +    (C:/JARVIS/OSOBNOST.md), aby sa dala ladit bez zasahu do kodu. Bez suboru sa nic neprida."""
@@ -220,13 +139,7 @@ index 2706ac0..d5e01be 100644
 +            "come first):\n" + text) if text else ""
 +
 +
- def widget_prompt(cfg: dict | None) -> str:
-     """The response-widget contract (ui/widgets.schema.json) for either tier;
-     off with island.widgets: false."""
-@@ -239,6 +284,48 @@ def system_prompt(projects: Projects, has_agent: bool = True) -> str:
-         "email, calendar, files, Drive, or a web search, news, weather, prices), or controlling this "
-         "PC (volume, brightness, dark mode, wallpaper, Wi-Fi, Bluetooth, music, apps, windows, Settings), "
-         "do not guess; reply with exactly: LOOKUP\n" if has_agent else "")
+@@ -241,0 +287,42 @@
 +    # ZMENENE (lokalna uprava, nie je v upstreame): praca so subormi usera je uloha, aj ked
 +    # nepovie projekt. Bez toho isli nacenenia do LOOKUP (len cita) alebo do "TASK ?".
 +    default = projects.resolve("default")
@@ -269,37 +182,16 @@ index 2706ac0..d5e01be 100644
 +        "sources or files, building or redesigning something, many steps, an unclear path). When unsure use "
 +        "[L2]. A question about laws, the government, legislation or regulation is never a LOOKUP: make it a "
 +        "TASK with [L2], its result is read out when it is done.\n")
-     return (
-         "You are a voice assistant on the user's Windows PC. Your reply is read aloud by TTS, so: "
-         "plain sentences, no markdown, no lists, no code, no emoji. Answer in one or two short "
-@@ -248,12 +335,12 @@ def system_prompt(projects: Projects, has_agent: bool = True) -> str:
-         "investigating a repo, anything that takes more than a minute), do not answer it; instead "
-         "reply with exactly one line:\n"
-         "TASK <project> :: <one-line task in imperative form>\n"
+@@ -251 +338 @@
 -        "where <project> is one of: " + names + ". Use TASK ? :: <task> if none fits.\n"
 +        "where <project> is one of: " + names + ". Use TASK ? :: <task> if none fits.\n" + make +
-         "A message may start with a note in parentheses holding earlier turns of this conversation "
-         "that another part of the assistant answered (lookups with the user's tools, tasks); treat "
-         "them as part of the conversation, e.g. to know what 'there' or 'then' refers to.\n"
-         "Otherwise just answer."
+@@ -256 +343 @@
 -    )
 +    ) + persona()
- 
- 
- AGENT_PROMPT = (
-@@ -753,7 +840,7 @@ class Agent:
-                   + (AGENT_WEATHER_PROMPT if "weather" in win else "")
-                   + (AGENT_WEATHER_MCP_PROMPT if "weather-mcp" in win else "")
-                   + (mcp_info.prompt() if "info" in win else "")
+@@ -756 +843 @@
 -                  + (AGENT_NEWS_PROMPT if "info" in win else "") + widget_prompt(self.cfg))
 +                  + (AGENT_NEWS_PROMPT if "info" in win else "") + widget_prompt(self.cfg) + persona())
-         args = ["--model", a["model"], "--output-format", "stream-json", "--verbose",
-                 "--permission-mode", a["permission_mode"], "--permission-prompts", "none",
-                 "--append-system-prompt", prompt, "--name", day or "hey-claude assistant"]
-@@ -838,8 +925,25 @@ class Agent:
-         self.chat.close()
- 
- 
+@@ -840,0 +928,16 @@
 +def _split_ctrl(text: str, ctrl: str | None):
 +    """ZMENENE (lokalna uprava): model obcas pred riadiaci riadok prida vetu ("Idem na to." a pod nou TASK ...).
 +    Vrati (co povedat nahlas, nedopovedany zvysok, riadiaci riadok). Riadok, ktory zacina TASK, LOOKUP alebo
@@ -316,74 +208,52 @@ index 2706ac0..d5e01be 100644
 +    return text, "", None
 +
 +
- class Brain:
-     convo: Transcript | None = None
+@@ -842,0 +946 @@
 +    has_running = None          # ZMENENE (lokalna uprava): Assistant sem da funkciu "bezi nejaka uloha?"
- 
-     def __init__(self, cfg: dict):
-         self.cfg = cfg
-@@ -1015,8 +1119,17 @@ class Brain:
-             self.timing["route"] = "local-" + routed[0]
-             yield routed
-             return
+@@ -1017,0 +1122,6 @@
 +        # ZMENENE (lokalna uprava): kym bezi uloha, staci stop-sloveso kdekolvek vo vete
 +        if (self.has_running is not None and self.has_running() and _SK_STOP_LOOSE_RE.search(text)
 +                and not _SK_STOP_SKIP_RE.search(text)):
 +            self.timing["route"] = "local-task_stop"
 +            yield ("task_stop", "all" if re.search(r"v[sš]etk", text, re.I) else "")
 +            return
-         routed = local_route(text, self.projects)
+@@ -1019 +1129,4 @@
 -        if routed is None and self.convo is not None and _IT_RE.match(text.strip()):
 +        # ZMENENE (lokalna uprava): slovenska doplnujuca otazka hned po ulohe ("co si zistil", "to bolo
 +        # o tom ci o onom") sa odpovie z vysledku tej ulohy, nespusta sa nove hladanie
 +        if routed is None and self.convo is not None and (
 +                _IT_RE.match(text.strip()) or (_SK_TASK_ASK_RE.search(text) and not _SK_WORK_RE.search(text))):
-             tid = self.convo.last_task_id()
-             if tid:
-                 routed = ("task_ask", "#" + tid, text.strip())
-@@ -1036,28 +1149,51 @@ class Brain:
-         t0 = time.perf_counter()
-         buf = ""
-         decided = None   # None until we know if it's a TASK/LOOKUP line or an answer
+@@ -1038,0 +1152 @@
 +        tail, ctrl = "", None       # ZMENENE: nedopovedany posledny riadok a riadiaci riadok za vetou
-         for chunk in self.chat.stream(self.with_context("fast", self.chat, text)):
-             if "first_token" not in self.timing:
-                 self.timing["first_token"] = time.perf_counter() - t0
-             if decided is None:
-                 buf += chunk
-                 head = buf.lstrip()
+@@ -1045 +1159 @@
 -                if len(head) < 6 and ("TASK ".startswith(head[:5]) or "LOOKUP".startswith(head[:6])):
 +                if len(head) < 8 and any(c.startswith(head) for c in ("TASK ", "LOOKUP", "STOPTASK")):
-                     continue            # could still turn into a control line
+@@ -1047 +1161,2 @@
 -                decided = "task" if head.startswith("TASK") else "lookup" if head.startswith("LOOKUP") else "say"
 +                decided = ("stop" if head.startswith("STOPTASK") else "task" if head.startswith("TASK")
 +                           else "lookup" if head.startswith("LOOKUP") else "say")     # ZMENENE: + STOPTASK
-                 if decided == "say":
+@@ -1049 +1164,3 @@
 -                    yield ("say", buf)
 +                    out, tail, ctrl = _split_ctrl(buf, ctrl)
 +                    if out:
 +                        yield ("say", out)
-                 continue
-             if decided == "say":
+@@ -1052 +1169,3 @@
 -                yield ("say", chunk)
 +                out, tail, ctrl = _split_ctrl(tail + chunk, ctrl)
 +                if out:
 +                    yield ("say", out)
-             else:
-                 buf += chunk
+@@ -1054,0 +1174,6 @@
 +        if decided == "say":                # ZMENENE (lokalna uprava): veta a za nou riadiaci riadok
 +            if ctrl is not None:
 +                buf, head = ctrl, ctrl.strip()
 +                decided = ("stop" if head.startswith("STOPTASK") else "task" if head.startswith("TASK") else "lookup")
 +            elif tail:
 +                yield ("say", tail)
-         if decided is None and buf.strip():
-             head = buf.strip()
+@@ -1057 +1182,2 @@
 -            decided = "task" if head.startswith("TASK") else "lookup" if head.startswith("LOOKUP") else "say"
 +            decided = ("stop" if head.startswith("STOPTASK") else "task" if head.startswith("TASK")
 +                       else "lookup" if head.startswith("LOOKUP") else "say")
-             if decided == "say":
-                 yield ("say", buf)
+@@ -1060 +1186,11 @@
 -        if decided == "lookup":
 +        if decided == "stop":               # ZMENENE (lokalna uprava): model rozpoznal "zastav to"
 +            self.timing["route"] = "local-task_stop"
@@ -396,13 +266,7 @@ index 2706ac0..d5e01be 100644
 +            self.timing["route"] += "+task"
 +            yield ("task", self.projects.resolve("default"), "[L2] " + text.strip())
 +        elif decided == "lookup":
-             if self.agent:
-                 self.timing["route"] += "+agent"
-                 yield ("lookup", text)
-@@ -1069,4 +1205,7 @@ class Brain:
-                 yield ("say", "I wanted to start a task but lost track of it. Please say it again.")
-                 return
-             proj, task = m.group(1).strip(), m.group(2).strip().splitlines()[0]
+@@ -1072 +1208,4 @@
 -            yield ("task", None if proj == "?" else self.projects.resolve(proj), task)
 +            # ZMENENE (lokalna uprava): bez projektu alebo s neznamym projektom ide uloha do
 +            # projektu "default", ak je v configu (inak ako predtym: opyta sa, kam)
@@ -412,13 +276,10 @@ diff --git a/heyclaude/tasks.py b/heyclaude/tasks.py
 index ccc8cc8..9dc48b4 100644
 --- a/heyclaude/tasks.py
 +++ b/heyclaude/tasks.py
-@@ -21,8 +21,22 @@ from .config import LOG_DIR, STATE_DIR
- SUMMARY_INSTRUCTION = (
-     "You were started by a voice assistant; nobody is watching this run live. Work on your own, "
-     "don't ask questions. When you are done, end your final message with one line of the form "
+@@ -24 +24 @@
 -    "'SUMMARY: <one plain sentence, under 25 words, saying what you did or found>'. "
 +    "'SUMMARY: <one or two plain sentences, under 40 words, saying what you did or found>'. "
-     "It will be read aloud, so no markdown, paths or code in that line."
+@@ -25,0 +26,14 @@
 +    # ZMENENE (lokalna uprava): zhrnutie je jedine, co user pocuje, preto musi sediet s vysledkom
 +    " That line is the only thing the user hears, so it must be exactly right: before writing it, check "
 +    "every number in it against your written result and the source file, take all numbers from one "
@@ -433,22 +294,10 @@ index ccc8cc8..9dc48b4 100644
 +    "read, what to produce, in which order, which checks prove it is right, and what the finished output looks "
 +    "like. Step 2: carry out that plan yourself from start to finish and deliver the finished result. If a step "
 +    "of the plan turns out to be wrong, fix the plan and go on. Never stop after planning.\n\nThe request:\n"
- )
- STATE_FILE = STATE_DIR / "tasks.json"
- 
-@@ -146,7 +160,7 @@ class TaskManager:
-     def running(self) -> list[Task]:
-         return [t for t in self.tasks.values() if t.status in ("starting", "running")]
- 
+@@ -149 +163 @@
 -    def command(self, prompt: str, name: str | None = None) -> list[str]:
 +    def command(self, prompt: str, name: str | None = None, level: str | None = None) -> list[str]:
-         c = self.cfg
-         args = [self.exe, "-p", prompt, "--output-format", "stream-json", "--verbose",
-                 "--permission-mode", c["permission_mode"],
-@@ -155,22 +169,41 @@ class TaskManager:
-                 "--name", "voice: " + _short(name or prompt, 40)]
-         if c.get("allowed_tools"):
-             args += ["--allowedTools", ",".join(c["allowed_tools"])]
+@@ -158,2 +172,7 @@
 -        if c.get("model"):
 -            args += ["--model", c["model"]]
 +        # ZMENENE (lokalna uprava): model a usilie podla narocnosti ulohy (tasks.levels v configu)
@@ -458,9 +307,7 @@ index ccc8cc8..9dc48b4 100644
 +            args += ["--model", str(model)]
 +        if lv.get("effort"):
 +            args += ["--effort", str(lv["effort"])]
-         args += [str(a) for a in c.get("extra_args") or []]
-         return args
- 
+@@ -162,0 +182,7 @@
 +    def level_of(self, prompt: str) -> tuple[str, str]:
 +        """ZMENENE (lokalna uprava): '[L2] urob to' -> ('L2', 'urob to'). Bez znacky plati tasks.default_level."""
 +        m = re.match(r"\s*\[L([123])\]\s*", prompt or "")
@@ -468,11 +315,7 @@ index ccc8cc8..9dc48b4 100644
 +            return "L" + m.group(1), prompt[m.end():]
 +        return str(self.cfg.get("default_level") or "L2"), prompt
 +
-     def spawn(self, project: str, path: str, prompt: str, context: str = "") -> Task:
-         """Start a run. `context` (the conversation that led to it) is appended
-         to what Claude Code is told; `prompt` alone is what the island shows."""
-         if len(self.running()) >= int(self.cfg.get("max_parallel", 3)):
-             raise RuntimeError("too many tasks are already running")
+@@ -167,0 +194,7 @@
 +        level, prompt = self.level_of(prompt)                   # ZMENENE: znacka narocnosti von z textu
 +        lv = (self.cfg.get("levels") or {}).get(level) or {}
 +        lead = PLAN_FIRST.format(model=lv["planner"]) if lv.get("planner") else ""
@@ -480,22 +323,9 @@ index ccc8cc8..9dc48b4 100644
 +              f"{', effort ' + str(lv['effort']) if lv.get('effort') else ''}"
 +              f"{', plan by ' + str(lv['planner']) if lv.get('planner') else ''}")
 +        self._level = level          # command() si ju precita; jej volanie ostava rovnake ako v upstreame
-         tid = time.strftime("%m%d-%H%M%S-") + uuid.uuid4().hex[:4]
-         t = Task(id=tid, project=project, path=path, prompt=prompt, log=str(LOG_DIR / f"{tid}.log"))
-         with self.lock:
-             self.tasks[tid] = t
-         proc = subprocess.Popen(
+@@ -173 +206 @@
 -            self.command(prompt + ("\n\n" + context if context else ""), name=prompt), cwd=path,
 +            self.command(lead + prompt + ("\n\n" + context if context else ""), name=prompt), cwd=path,
-             stdin=subprocess.DEVNULL,
-             stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, encoding="utf-8",
-             errors="replace", bufsize=1, env=child_env(task=tid), creationflags=NO_WINDOW,
-@@ -252,7 +285,7 @@ class TaskManager:
-         if t.status != "stopped":
-             t.status = "failed" if (is_error or proc.returncode not in (0, None)) else "done"
-         t.summary = extract_summary(result_text) if result_text else (
+@@ -255 +288 @@
 -            "It stopped without a result." if t.status != "done" else "It finished.")
 +            "Skončila bez výsledku." if t.status != "done" else "Hotovo.")   # ZMENENE (lokalna uprava): po slovensky
-         w(f"\n# {t.status} after {t.ended - t.started:.0f}s"
-           + (f", ${t.cost_usd:.3f}" if t.cost_usd else "") + f"\n# summary: {t.summary}")
-         raw.close()

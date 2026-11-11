@@ -3,6 +3,13 @@
 Najnovšie hore. Po každej novej položke: zavri Jarvisa a spusti `AKTUALIZUJ.bat`.
 Ak zmena potrebuje ručný krok, je pri nej riadok „Treba spraviť".
 
+## 2026-11-11 večer, menej cudzieho kódu v repozitári
+
+- Vzor nastavení už nie je kópia súboru autora hey-claude, ale len zoznam našich zmenených kľúčov. hey-claude si zvyšok berie zo svojho `config.example.yaml`. Správanie je rovnaké.
+- Súbor s úpravami obsahuje už len zmenené riadky, bez okolitého kódu autora.
+
+Treba spraviť: nič. Kto už inštaloval, spustí `AKTUALIZUJ.bat` a na otázku o nastaveniach odpovie A.
+
 ## 2026-11-11, prvé vydanie
 
 - Slovenčina: prepis reči, odpovede aj hlášky úloh sú po slovensky. Budiace slovo „Hey Jarvis".

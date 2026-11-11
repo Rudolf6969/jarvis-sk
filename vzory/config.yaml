@@ -1,527 +1,78 @@
-# Copy to config.yaml and edit (or use Settings… in the tray menu, which
-# creates it). config.yaml is git-ignored.
+# JARVIS SK: len kluce, ktore menime oproti hey-claude. Vsetko ostatne berie hey-claude
+# zo svojho config.example.yaml, kde je aj vysvetlenie kazdeho kluca.
+# Hodnoty v {{...}} doplni instalator.
 
+# klavesova skratka na hovorenie bez budiaceho slova
 app:
-  listening: true            # wake word on at start; off = mic closed until you turn it on
-  hotkey: ctrl+shift+space   # ZMENENE: ctrl+alt+space drzi ina aplikacia (PowerToys?)
-  stop_hotkey: esc           # stops it mid-answer; registered only while it thinks or talks; "" = none
-  start_with_windows: false  # Startup-folder shortcut (pythonw -m heyclaude, no console)
+  hotkey: ctrl+shift+space
 
+# budiace slovo: hey jarvis (model z projektu openWakeWord)
 wake:
-  # The "hey claude" model: a path to a .onnx file (relative = inside this
-  # folder) or a stock openWakeWord name (hey_jarvis, alexa, hey_mycroft,
-  # hey_rhasspy). The default path is the shared model, downloaded on first
-  # start from the GitHub release and checked with SHA-256. Settings -> Wake
-  # word -> "Tune it to my voice" trains a personal one (state/wake_models/)
-  # and points this at it; changes apply live. If the file is missing or won't
-  # load, it falls back to the stock hey_jarvis model at threshold 0.5: the log
-  # says why and the island shows "hey jarvis". docs/train-hey-claude.md.
-  model: hey_jarvis         # budiace slovo 'hey jarvis'
-  # How sure the model must be. Models trained by hey-claude are calibrated so
-  # that 0.5 is the threshold their training picked. tools/wake_eval.py
-  # measures your samples and a long recording, and recommends a value.
-  threshold: 0.5
-  # Seconds to ignore the wake word after an interaction ends.
-  cooldown: 1.0
-  # Ignore the wake word while the assistant itself is speaking, and for
-  # speaking_tail_s after it stops (echo, audio still in flight). Clicking the
-  # island or the hotkey still interrupts it.
-  suppress_while_speaking: true
-  speaking_tail_s: 0.7
+  model: hey_jarvis
 
-listen:
-  device: null            # sounddevice input index or name; null = Windows default mic
-  # Voice activity: silero (default; the Silero VAD model faster-whisper ships,
-  # on the CPU) or webrtc (the older, cruder webrtcvad).
-  vad: silero
-  silero_threshold: 0.5   # speech probability that counts as speech (0..1)
-  vad_aggressiveness: 2   # webrtc only: 0..3, higher = stricter about what counts as speech
-  start_timeout: 5.0      # give up if no speech starts within this many seconds
-  # End of turn. At each pause the words so far are transcribed in the
-  # background; a finished sentence ends the turn after short_silence_ms, one
-  # that trails off ("and...", "the", "um") waits long_silence_ms, anything
-  # else end_silence_ms. If you don't speak again, that transcript is used as
-  # is, so speech-to-text costs nothing after you stop.
-  end_silence_ms: 700
-  smart_end: true
-  short_silence_ms: 300
-  long_silence_ms: 1200
-  pause_probe_ms: 160     # silence before the pause is transcribed
-  # An instant command (M10) the grammar fully parsed at that pause ("mute",
-  # "volume 30") ends the turn as soon as its transcript is in, after
-  # instant_silence_ms, instead of waiting out the silence above. A task start
-  # ("start a task in <project>: ...") always waits long_silence_ms: people
-  # dictate tasks with pauses.
-  instant_end: true
-  instant_silence_ms: 0
-  # Live transcript on the island while you talk: auto = when whisper is on the GPU.
-  partials: auto
-  partial_interval_s: 0.8
-  # Echo cancellation (WebRTC AEC3, from the livekit package) removes the
-  # assistant's own voice from the mic, so it can hear you over it.
-  aec: true
-  aec_noise_suppression: false
-  # Barge-in: talk over an answer and it stops and listens (Kokoro/Piper only;
-  # SAPI plays audio itself, so there's nothing to cancel). Fires after
-  # barge_in_ms of speech, not in the first barge_in_grace_ms of a reply.
-  barge_in: true
-  barge_in_ms: 200
-  barge_in_grace_ms: 400
-  barge_in_gap_ms: 100
-  barge_in_min_rms: 300
-  max_seconds: 20
-  # Hold this key while talking to keep listening through pauses (silence won't
-  # end the utterance until you let go). ctrl = either Ctrl; also right ctrl,
-  # caps lock, f13... "" = off. Ctrl+C etc. during a hold count as shortcuts.
-  hold_key: ctrl
-  hold_mute_key: shift       # while holding the hold key, also hold this to mute the mic; "" = off
-  max_utterance_s: 180    # safety cap once a hold was used
-
+# prepis reci po slovensky
 stt:
-  # gpu: the GPU by default, picked per request from actual load (see the
-  # *_pct keys below); falls back to the CPU when CUDA/cuDNN is missing, the
-  # load fails, or a transcription hits a CUDA error (that request is retried
-  # on the CPU). cpu: always cpu_model. --gpu / --cpu override this.
-  device: gpu
-  # large-v3-turbo (default: ~0.25 s per request on an RTX 4060, which also
-  # makes the end of turn quicker) or large-v3 (~0.4 s). A name, or a folder
-  # with a converted model, e.g. state/models/faster-whisper-large-v3-turbo.
-  # README "Voice" has the measured speed and accuracy of each, and how to
-  # compare them on your own voice (tools/stt_eval.py).
-  gpu_model: large-v3-turbo
-  gpu_compute_type: int8_float16   # or float16 (more VRAM)
-  cpu_model: base             # ZMENENE (SK): base.en je len anglicky, base je multijazycny
-  cpu_compute_type: int8
-  cpu_threads: 4
-  language: sk               # ZMENENE (SK): Whisper prepisuje slovencinu, neprekalada do EN
-  # Per request: use the CPU when the GPU is at least gpu_busy_pct busy (averaged
-  # over ~0.5 s) or short of VRAM, unless the CPU is at least cpu_busy_pct busy
-  # (then stay on the GPU). Back to the GPU once it's below gpu_resume_pct.
-  gpu_busy_pct: 70
-  gpu_resume_pct: 60
-  cpu_busy_pct: 85
-  # Opt-in: never use the GPU while Adobe Premiere Pro is running (an idle
-  # Premiere is fine otherwise; the load check above handles a busy one).
-  yield_to_premiere: false
-  # Limit language detection to these (e.g. [en, ru, uz]); one fixes the
-  # language; [] = `language` above. Needs a multilingual model (not *.en).
-  languages: []
+  cpu_model: base
+  language: sk
 
-speech:
-  # M4c. How much memory speech uses, switchable from the tray (Speech) without
-  # a restart:
-  #   local:   faster-whisper + Kokoro on your GPU/CPU (best voice, ~2.5 GB VRAM)
-  #   windows: no models. Speech-to-text: Windows online dictation (needs
-  #            Settings > Privacy & security > Speech > Online speech recognition;
-  #            audio goes to Microsoft), else the offline SAPI recognizer. Voice:
-  #            the Windows voices.
-  #   cloud:   Groq or OpenAI transcription (audio leaves the machine; keys only
-  #            from GROQ_API_KEY / OPENAI_API_KEY or the Windows credential store,
-  #            never this file). Voice: the Windows voice, or cloud_tts_provider.
-  #   auto:    local while the GPU (or, without one, RAM) has room, else windows
-  #            (online recognition on) or cloud (a key).
-  backend: local
-  stt_backend: null        # mix them: e.g. stt_backend: windows with backend: local (Kokoro voice)
-  tts_backend: null
-  # When the chosen backend fails (no network, no key, a WinRT error), the next
-  # one in this list runs, and the island says why.
-  fallback_order: [local, windows, cloud]
-  # Lean: unload Whisper and Kokoro after unload_after_min idle; they reload on
-  # the next wake (the island shows "loading…" if they aren't ready when you
-  # stop talking). The wake word (~20 MB, CPU) always stays loaded.
-  lean: false
-  unload_after_min: 10
-  auto_min_vram_mb: null   # auto: free VRAM local needs (null = Whisper + Kokoro's own need)
-  auto_min_ram_mb: 1500    # auto without a usable GPU: free RAM local needs
-  # windows
-  windows_language: en-US
-  windows_voice: null      # a Windows voice name substring, e.g. "Aria"; null = the default
-  # cloud
-  cloud_stt_provider: groq            # groq (hosted whisper-large-v3-turbo, free tier) | openai
-  groq_model: whisper-large-v3-turbo
-  openai_stt_model: gpt-4o-mini-transcribe
-  cloud_tts_provider: null            # null = the Windows voice | openai | elevenlabs
-  openai_tts_model: gpt-4o-mini-tts
-  openai_voice: alloy
-  elevenlabs_model: eleven_flash_v2_5
-  elevenlabs_voice: 21m00Tcm4TlvDq8ikWAM
-  cloud_timeout_s: 15
-
-dictate:
-  # M4d: hold this key, speak, let go: the words are typed where the cursor is,
-  # in any app (through the clipboard; yours is put back). Double tap it for
-  # hands-free until the next tap; Esc cancels. Its own key, separate from
-  # listen.hold_key. right alt, caps lock, f13, right ctrl... Uses speech.backend.
-  enabled: true
-  key: right alt
-  paste_again_hotkey: win+alt+v   # paste the last dictation again; "" = none
-  # Clean-up by Claude (on your subscription, via the claude CLI): off | as_said
-  # (punctuation only) | natural (drops um/uh, false starts) | polished. Adds
-  # a second or two. cleanup_apps sets it per app, by exe name.
-  cleanup: "off"                 # quoted: bare off is YAML for false
-  cleanup_apps: {}               # e.g. {outlook.exe: polished, windowsterminal.exe: as_said}
-  restore_delay_s: 0.3           # wait before putting your clipboard back (slow apps read it late)
-  min_speech_ms: 150             # less speech than this pastes nothing (no "Thank you." from silence)
-  max_seconds: 300
-  trailing_space: true           # a space after each dictation, so the next one doesn't glue onto it
-
-dictionary:
-  # M4d: your own words. Used by dictation and the assistant's speech-to-text.
-  # words: Whisper's spelling hint (initial prompt), e.g. [Phoenix, eClass, Dilnoza]
-  words: []
-  # replacements: what it still gets wrong -> what you meant (whole words, any case)
-  replacements:
-    hey cloud: hey Claude
-    cloud code: Claude Code
-  # snippets (dictation): a short spoken phrase -> saved text
-  snippets: {}
-
+# rozhovor a rozhodovanie ide cez claude CLI, teda cez tvoje predplatne, nikdy cez API kluc
 fast:
-  # auto  = the Anthropic API if there's a key (see api_key_file), otherwise the claude CLI
-  # cli   = always the claude CLI (your subscription login)
-  # sdk   = always the Anthropic SDK
-  backend: cli               # ZMENENE: vzdy claude CLI = tvoje predplatne, nikdy API kluc
-  # The direct API path (the low-latency option) needs a key: ANTHROPIC_API_KEY
-  # in hey-claude's environment, or the key on the first line of this file
-  # (git-ignored). The key is never passed to a `claude` process: lookups and
-  # tasks stay on your subscription login.
-  api_key_file: state/anthropic-api-key.txt
-  cli_model: {{BRAIN}}            # rozhovor a rozhodovanie (profil max: opus, profil pro: sonnet)
-  sdk_model: claude-haiku-5-5
-  # Keep one claude CLI process alive between questions (much faster, and it
-  # remembers the conversation). It is recycled after this many turns.
-  persistent: true
-  max_turns: 20
-  max_tokens: 500              # ZMENENE (bolo 300): miesto na cely brief v zadani ulohy
+  backend: cli
+  cli_model: {{BRAIN}}
+  max_tokens: 500
 
+# agent na otazky a ovladanie pocitaca; mapa projektov ide do jeho pokynov
 agent:
-  # Tier (b): questions that need your tools ("who messaged me on Telegram",
-  # "what's on my calendar") go to ONE warm Claude Code process, started at
-  # launch and reused, so there's no start-up delay per question and no pile
-  # of throwaway sessions. It sees whatever MCP servers Claude Code itself is
-  # configured with (`claude mcp list`), plus your claude.ai connectors
-  # (Gmail, Calendar, Drive...) once the CLI is signed in.
-  enabled: true
-  model: {{BRAIN}}                  # agent na otazky a ovladanie PC
-  cwd: null                    # null = this repo folder
-  permission_mode: {{AGENT_MODE}}   # bypassPermissions = bez kariet Allow, default = pyta sa
-  # What it may use without asking; anything else is denied automatically.
-  # Add MCP servers by name prefix, e.g. "mcp__telegram" allows all of that
-  # server's tools. Leave out tools that send or change things unless you want
-  # "send Sam a message saying ..." to just do it.
-  # Defaults: built-in read tools plus the READ-ONLY tools of the claude.ai
-  # Calendar / Gmail / Drive connectors (names as the signed-in CLI reports
-  # them). Nothing here sends, deletes or edits anything.
-  allowed_tools:
-    - Read
-    - Glob
-    - Grep
-    - WebSearch
-    - WebFetch
-    - mcp__claude_ai_Google_Calendar__list_calendars
-    - mcp__claude_ai_Google_Calendar__list_events
-    - mcp__claude_ai_Google_Calendar__search_events
-    - mcp__claude_ai_Google_Calendar__get_event
-    - mcp__claude_ai_Gmail__search_threads
-    - mcp__claude_ai_Gmail__get_thread
-    - mcp__claude_ai_Gmail__get_message
-    - mcp__claude_ai_Gmail__list_labels
-    - mcp__claude_ai_Google_Drive__search_files
-    - mcp__claude_ai_Google_Drive__list_recent_files
-    - mcp__claude_ai_Google_Drive__get_file_metadata
-    - mcp__claude_ai_Google_Drive__read_file_content
-    # M9: hey-claude's own Windows settings server ("windows"): its read tools
-    # and comfort-setting changes, each shown on the island with an Undo button.
-    # Left out on purpose: close_window (unsaved work), and the experimental
-    # set_default_output_device / set_night_light (undocumented Windows APIs).
-    - mcp__windows__get_volume
-    - mcp__windows__set_volume
-    - mcp__windows__set_mute
-    - mcp__windows__list_app_volumes
-    - mcp__windows__set_app_volume
-    - mcp__windows__list_audio_devices
-    - mcp__windows__get_brightness
-    - mcp__windows__set_brightness
-    - mcp__windows__get_theme
-    - mcp__windows__set_theme
-    - mcp__windows__get_wallpaper
-    - mcp__windows__set_wallpaper
-    - mcp__windows__get_night_light
-    - mcp__windows__get_radios
-    - mcp__windows__set_wifi
-    - mcp__windows__set_bluetooth
-    - mcp__windows__battery_status
-    - mcp__windows__get_power_mode
-    - mcp__windows__set_power_mode
-    - mcp__windows__lock_pc
-    - mcp__windows__request_power_action
-    - mcp__windows__now_playing
-    - mcp__windows__media_control
-    - mcp__windows__play_spotify
-    - mcp__windows__list_apps
-    - mcp__windows__launch_app
-    - mcp__windows__list_windows
-    - mcp__windows__focus_window
-    - mcp__windows__minimize_window
-    - mcp__windows__restore_window
-    - mcp__windows__snap_window
-    - mcp__windows__get_clipboard
-    - mcp__windows__set_clipboard
-    - mcp__windows__screenshot
-    - mcp__windows__open_settings_page
-    # Windows-MCP (only when windows_mcp.enabled): looking at the screen. Its
-    # waits (Wait, WaitFor, DisplayInventory) are added by themselves. Its acting
-    # tools (Click, Type, Shortcut, Move, App, Process, FileSystem, ...) are never
-    # pre-allowed, even if you add them here: the agent asks on the island (one
-    # OK covers the rest of that request; killing a process, changing files or
-    # running an .exe needs a click). PowerShell / Registry: never.
-    # Anything else not on this list also asks on the island (hooks.approvals);
-    # "Always" on a card adds the tool here (the file as it was goes to
-    # state/config-backups/). Sending on Telegram always asks, with the draft.
-    - mcp__windows-mcp__Snapshot
-    - mcp__windows-mcp__Screenshot
-  # M9: control Windows by voice ("volume 30", "dark mode", "next song",
-  # "brightness down", "change my wallpaper to <file>", "undo that").
-  # hey-claude's own settings server, started with this Python (needs the
-  # requirements.txt packages mcp, pycaw, monitorcontrol, winrt-*). Config:
-  # state/agent-windows-mcp.json, written at every start.
-  windows_settings: true
-  # Windows-MCP (CursorTouch, MIT): accessibility snapshots and screenshots of
-  # any app. Optional, and installed apart from hey-claude's venv so it can't
-  # touch the GPU stack:   uv tool install windows-mcp   (~86 packages, ~30 MB)
-  windows_mcp:
-    enabled: false
-    command: null              # null = windows-mcp on PATH or in ~/.local/bin
-    exclude_tools: [PowerShell, Registry]   # never exposed; always added even if removed here
-  # MCP servers that live in the Claude *desktop app's* config
-  # (claude_desktop_config.json) are invisible to the CLI. List names here to
-  # copy them into state/agent-mcp.json and pass them with --mcp-config.
-  # Caution for telegram: the copy reuses the same TELEGRAM_SESSION as the
-  # desktop app's copy, and Telegram delivers updates to only one connection of
-  # an authorization (see telegram-mcp-server's README). Reading history works,
-  # but give it its own session if the desktop copy must keep live updates.
-  import_desktop_mcp: []       # e.g. [telegram]
-  mcp_configs: []              # extra --mcp-config files
-  max_turns: 30                # recycle the process after this many questions
-  timeout: 180                 # seconds to wait for one answer
-  filler: "Pozriem sa na to."   # ZMENENE: po slovensky (bolo "Let me check.")      # spoken right away while it looks things up
-  filler_min_words: 8          # ...but only for requests of at least this many words (0 = always)
-  filler_after_s: 1.8          # a shorter request still gets it if nothing has been said this long after you stop talking (0 = never)
-  extra_args: ['--append-system-prompt-file', 'C:\JARVIS\PROJEKTY.md']   # ZMENENE 2026-11-11: mapa projektov a pamate v pokynoch
-  disallowed_tools: []         # more tools the agent is never offered (Claude Code's own PowerShell never is)
+  model: {{BRAIN}}
+  permission_mode: {{AGENT_MODE}}
+  filler: Pozriem sa na to.
+  extra_args:
+  - --append-system-prompt-file
+  - C:\JARVIS\PROJEKTY.md
 
+# model na otazky typu: co ta uloha zmenila
 conversation:
-  # One conversation shared by the quick model, the tool agent and tasks:
-  # whichever answers next is told what the others said, so "what's on my
-  # calendar?" -> "and the weather then?" keeps context.
-  followup_s: 5                # after an answer, listen this long without the wake word (0 = off)
-  max_turns: 8                 # turns of context passed between tiers
-  max_tokens: 1500             # ...and at most about this many tokens of it
-  idle_reset_s: 600            # start a new conversation after this much silence
-  # Save the conversation: turns go to state/conversations/<date>.jsonl
-  # (git-ignored) and are picked up again after a restart; the tool agent's
-  # Claude Code session is saved and named "hey-claude <date>". Off: nothing
-  # is written to disk. "Start fresh" (said out loud) forgets it either way.
-  save: false
-  task_question_model: {{BRAIN}}    # odpovede na 'co ta uloha zmenila'
-  task_question_timeout: 120
+  task_question_model: {{BRAIN}}
 
+# presna cesta ku claude.exe, doplni instalator
 claude:
-  # Path to claude.exe. null = look on PATH, then in the Claude desktop
-  # app's bundled copy (%LOCALAPPDATA%\Claude-Data\*\claude-code\<ver>\...).
-  exe: {{CLAUDE_EXE}}   # presna cesta ku claude.exe, doplni instalator
+  exe: {{CLAUDE_EXE}}
 
+# ulohy na pozadi: opravnenia, povolene nastroje, model podla narocnosti (L1 jednoduche, L2 bezna praca a zakony, L3 zlozite)
 tasks:
-  model: null                    # null = your Claude Code default model
-  permission_mode: {{TASKS_MODE}}   # bypassPermissions = autopilot bez brzdy, auto = s brzdou
-  # Tools the headless run may use without asking. Anything else that would
-  # need a permission prompt is denied automatically (--permission-prompts none).
+  permission_mode: {{TASKS_MODE}}
   allowed_tools:
-    - Read
-    - Glob
-    - Grep
-    - Edit
-    - Write
-    - "Bash(git status:*)"
-    - "Bash(git diff:*)"
-    - "Bash(git log:*)"
-    - "Bash(ls:*)"
-    # ZMENENE 2026-11-11: hladanie na webe v ulohach (bez toho uloha 12:56 skoncila bez vysledku)
-    - WebSearch
-    - WebFetch
-  extra_args: ['--append-system-prompt-file', 'C:\JARVIS\PROJEKTY.md']   # ZMENENE 2026-11-11: mapa projektov a pamate v pokynoch
-  max_parallel: 3
-  # ZMENENE 2026-11-11: model podla narocnosti ulohy. Znacku [L1]/[L2]/[L3] dava rychly model pri zadani.
-  #   L1 = uplne jednoduche veci (otvor, najdi, skopiruj)        -> haiku
-  #   L2 = bezna praca, zakony, vlada, peniaze, vypocty, resers -> opus s vyssim usilim
-  #   L3 = zlozite zadanie: najprv plan od fable, potom to dokonci opus
+  - Read
+  - Glob
+  - Grep
+  - Edit
+  - Write
+  - Bash(git status:*)
+  - Bash(git diff:*)
+  - Bash(git log:*)
+  - Bash(ls:*)
+  - WebSearch
+  - WebFetch
+  extra_args:
+  - --append-system-prompt-file
+  - C:\JARVIS\PROJEKTY.md
   default_level: L2
   levels:
-    L1: {model: haiku}
+    L1:
+      model: haiku
     L2: {{L2}}
     L3: {{L3}}
 
-# M7: watch every Claude Code session on this PC (terminal, VS Code, the Claude
-# desktop app, and the tasks above) through Claude Code hooks. Nothing happens
-# until the hooks are installed: Settings -> Sessions -> Install hooks (it shows
-# the change to ~/.claude/settings.json first; Uninstall restores it exactly).
-hooks:
-  enabled: true                  # listen for hook events (a named pipe only your Windows user can connect to)
-  approvals: true                # Allow / Deny / Always on the island; off = the terminal always asks
-                                 # (and hey-claude's own agent is refused anything off agent.allowed_tools)
-  approval_timeout_s: 100        # then the terminal's own prompt (tasks and the agent: denied). At most 108
-  voice_approvals: true          # "yes, allow that" / "deny" / "always" while a card is up (dangerous ones need a click)
-  done_flash: true               # the one-shot "done" moment when a session stops
-
-# Spoken name -> folder. Say "start a task in <name>: <thing>".
-# Several spoken names can point at the same folder.
+# hovoreny nazov -> priecinok; default = kam ide uloha, ked nepovies kam
 projects:
-  # Hovoreny nazov -> priecinok. Viac nazvov moze mierit na to iste.
-  # Cesta zamerne bez diakritiky: C kniznice v nastrojoch na nej padaju.
   praca: C:\PRACA
   práca: C:\PRACA
   robota: C:\PRACA
   work: C:\PRACA
-  # ZMENENE 2026-11-11: ked nepovies kam, uloha ide sem (inak sa JARVIS pyta, do ktoreho projektu)
   default: C:\PRACA
 
+# slovensky hlas Lukas cez Edge TTS (edge-piper sa tvari ako Piper)
 tts:
-  # kokoro (default): natural voice, on the GPU with a CPU fallback, then SAPI.
-  # sapi: Windows voices. piper: a separate executable (piper_exe/piper_model).
-  engine: piper              # ZMENENE (SK): Kokoro slovensky nevie, Piper ano
-  # gpu: picked per reply from GPU load, like speech-to-text (stt.gpu_busy_pct,
-  # stt.yield_to_premiere); cpu: always the CPU.
-  device: gpu
-  voice: af_heart        # kokoro voice: af_heart, af_bella, af_nicole, am_michael, bf_emma, bm_george...
-  speed: 1.0
-  # Model files (null = state/models/kokoro/kokoro-v1.0.onnx and voices-v1.0.bin;
-  # README "Kokoro voice" says where to get them).
-  kokoro_model: null
-  kokoro_voices: null
-  cpu_threads: 8         # kokoro on the CPU
-  # The first sentence of a reply is cut at a comma once it's this many words,
-  # so the first audio comes sooner. 0 = whole sentences only.
-  first_chunk_words: 9
-  idle_close_s: 4        # close the audio output this long after speaking (lets Windows sleep)
-  # SAPI (engine: sapi, or the last fallback)
-  rate: 190              # words per minute
-  sapi_voice: null       # voice name substring, e.g. "Zira"; null = the Windows default
-  # piper
-  piper_exe: 'C:\JARVIS\hey-claude\.venv\Scripts\edge-piper.exe'      # ZMENENE: prekladac na Edge TTS (Lukas)
-  piper_model: 'C:\JARVIS\voice\edge-lukas'                 # ZMENENE: konfiguracia hlasu Lukas
-
-instant:
-  # M10: simple commands run locally, no model: "volume 30", "turn it up a bit",
-  # "mute", "dark mode", "brightness down", "next song", "pause", "what's
-  # playing", "set a timer for 5 minutes", "open Spotify", "lock the screen",
-  # "what time is it", "Wi-Fi off". Same tools, island effect and "undo that"
-  # as when the agent does it (M9), in well under a second. Follow-ups work
-  # on the last one: "a bit more", "again", "the other way", "make it 40".
-  # Anything it isn't sure about still goes to Claude. Sleep, restart and
-  # shutdown are never instant (they keep the click to confirm).
-  # Russian and Uzbek wordings work too ("громкость 30", "тише", "таймер на пять
-  # минут"; "ovozni o'ttizga qo'y", "keyingi qo'shiq", "soat necha"), but only
-  # when Whisper writes them: set stt.language to empty (auto-detect) or ru/uz.
-  # With `en` it turns them into English. The acks stay English.
-  # Settings > Instant edits everything here and lists the taught wordings.
-  enabled: true
-  # The paraphrase classifier (for wordings the grammar doesn't know, like "my
-  # ears hurt"): how similar to one of its example phrasings a request must be,
-  # 0-1. Higher = stricter (more goes to Claude). The grammar ignores this.
-  threshold: 0.62
-  classifier: true        # false = the grammar only
-  ack: speak              # speak: a short spoken ack ("Volume 30."); silent: just the island effect
-                          # (answers like the time, and errors, are always spoken)
-  step: 10                # "turn it up" = 10; "a bit" = half of it, "a lot" = 2.5x
-  context_s: 120          # "a bit more" / "again" / "the other way" apply to the last command this recent
-  radios: true            # "Wi-Fi off" / "Bluetooth on" instantly (false: they go to the agent)
-  # Requests the agent handled with exactly one settings change are noted in
-  # state/intents_misses.jsonl (local, never committed). Say "teach it" right
-  # after to make that wording instant (state/intents_taught.yaml).
-  learn: true
-
-weather:
-  # M5: the built-in weather tool (Open-Meteo: no key, no account). The tool
-  # agent calls it for weather questions, and the island shows the forecast
-  # card from its result. location = your home place for "what's the weather"
-  # (a city, optionally ", country"); empty = it asks you to say a place.
-  # Changes apply after a restart (the agent's tools start with it).
-  enabled: true
-  location: ""
-  unit: C                 # C or F
-  # M5b: plain weather questions ("will it rain tomorrow?", "weather in Paris",
-  # "when's sunset", "what's the air quality") skip the model: the card shows
-  # at once and a short summary is spoken from the same data. false = they go
-  # to the tool agent as before.
-  local_route: true
-  # weather-mcp (github.com/weather-mcp/weather-mcp, MIT, keyless: Open-Meteo,
-  # NOAA, MeteoAlarm, MET Norway) adds official alerts, air quality/UV/pollen, a
-  # 15-minute rain nowcast and the moon. It needs Node.js 18+ (npx); without it
-  # the built-in Open-Meteo tool answers (logged once). It runs warm from start-up
-  # (~10-40 s to start; until then the built-in tool answers).
-  mcp:
-    enabled: true    # ZMENENE 2026-11-11: znova zapnute, pricina (zastarana npm cache) opravena
-    # Exact version, official @dangahagan scope only (never @latest; the README
-    # warns about stale forks under other scopes). npm provenance checked for
-    # 1.35.8 on 2026-11-10: built by GitHub Actions from weather-mcp/weather-mcp
-    # tag v1.35.8, .github/workflows/publish.yml (heyclaude/weather_mcp/__init__.py).
-    package: "@dangahagan/weather-mcp@1.35.8"
-    tools: [get_weather_summary, get_forecast, get_current_conditions, get_alerts, get_air_quality, search_location]
-    timeout_s: 2.0        # wait this long for its first data, then the built-in tool answers
-    fallback: true        # false = no built-in fallback once weather-mcp runs (it says it couldn't get it)
-    cache_s: 300          # a place's answers are reused this long (weather-mcp caches upstream data too)
-    prefetch: true        # fetch your home place once it's up, so the first question is instant
-    refresh_min: 0        # refresh home in the background every N min (0 = never; at least 30: fair use)
-    agent: false          # also give the tool agent weather-mcp (mcp__weather-mcp__*, the tools above).
-                          # Costs ~4k tokens of tool descriptions per agent turn and a second node process.
-    env: {}               # extra environment for weather-mcp, e.g. {GOOGLE_POLLEN_API_KEY: ...} (its README)
-
-# M5b: hey-claude's own read-only data tools for the tool agent (heyclaude/mcp_info), each with an island card.
-info:
-  enabled: true
-  home: ""                # "from here" for directions: a place or "lat, lon" (empty = weather.location)
-  units: metric           # distances on the directions card: metric or imperial
-  convert:
-    rates_ttl_h: 6        # how long exchange rates are cached (0.25-48 h)
-  translate:
-    email: ""             # optional: an email for MyMemory raises its free quota (~5k -> ~50k chars a day)
-  # Your class timetable (the timetable card). Read-only: nothing is copied.
-  timetable:
-    path: ""              # the timetable project folder or one data file (clean_timetables.py, read as data and
-                          # never run; or .json). Empty = not set up.
-    group: ""             # your group code as the data spells it (e.g. SE-23-01); optional if the data has one group
-    drop: []              # subject codes you don't take, e.g. [CS101]
-    extra: []             # your own classes: [{day: Tue, start: "16:00", end: "17:30", title: Study group, room: Library}]
-    tz: ""                # IANA zone, e.g. Asia/Tashkent; empty = this PC's clock
-  # Your deadlines (the deadlines card), from your own notes file.
-  deadlines:
-    path: ""              # a .md/.txt with lines like "- 2026-11-14 18:00 Physics lab report" ([x] or ~~struck~~ = done),
-                          # or a .json/.yaml list of {due, title, done}. Empty = not set up.
-    default_time: "23:59" # the time for a deadline written without one
-    overdue_h: 48         # how long an overdue item stays on the list
-
-island:
-  screen: primary        # primary, or a screen index
-  top_margin: auto        # px, or auto = centred in a bar docked at the top of the screen (else 8)
-  # M5: the island is Qt Quick ("Ember & Thread", docs/island-motion.md). classic = the old QPainter one.
-  engine: qml
-  # Size of the whole island (pill, panel, cards, text, icons): 0.8-2.0, or auto
-  # (1.0; 1.25 on a screen of 27" or more). Vector all the way, so it stays sharp.
-  # Settings > General > Island has a slider that previews it live.
-  scale: auto
-  # Motion: auto (calm when Windows "Animation effects" is off), full, calm (no decoration), off (instant).
-  motion: auto
-  renderer: auto          # auto (GPU: D3D11) or software (no GPU; live states at 30 fps)
-  hide_when_idle: false   # nothing on screen at rest; touch the top-centre edge to peek
-  widgets: true           # answers may carry a card (weather, agenda, timer...): ui/widgets.schema.json
-  icons: true             # the service icon of a tool in use ("Google Calendar · list events")
-  fetch_favicons: false   # fetch a favicon once for services without a bundled icon (state/icons/)
-  service_icons: {}       # per-server override, e.g. {google_calendar: C:/icons/cal.png}
-  usage_pill: true        # plan usage (5 h / week) in the hover list, as Claude Code reports it
-  # M6: a character in the island instead of the ember (characters/README.md). Settings > Character.
-  character:
-    pack: ember           # ember (the theme's own), echo, cinder, wren, tycho, hum, or a pack in state/characters/
-    where: island         # island, desktop (a companion above the taskbar), or both
-    desktop_size: 120     # the companion's size in px
-    antics: normal        # idle antics: off, rare (~10 min apart), normal (~4 min), lively (~1.5 min)
-    antics_off: []        # antic ids to skip, e.g. [fishing]
+  engine: piper
+  piper_exe: C:\JARVIS\hey-claude\.venv\Scripts\edge-piper.exe
+  piper_model: C:\JARVIS\voice\edge-lukas

@@ -82,11 +82,11 @@ function Nastav-Verziu($sha) {
 }
 
 function Zapoj-Patch {
-    if ((Git-Kod @("-C", $Repo, "apply", "--reverse", "--check", $Patch)) -eq 0) { Ok "slovenske upravy uz v hey-claude su"; return }
-    if ((Git-Kod @("-C", $Repo, "apply", "--check", $Patch)) -ne 0) {
+    if ((Git-Kod @("-C", $Repo, "apply", "--unidiff-zero", "--reverse", "--check", $Patch)) -eq 0) { Ok "slovenske upravy uz v hey-claude su"; return }
+    if ((Git-Kod @("-C", $Repo, "apply", "--unidiff-zero", "--check", $Patch)) -ne 0) {
         Koniec "Slovenske upravy sa nedaju vlozit do hey-claude. Spusti AKTUALIZUJ.bat, a ak to nepomoze, daj vediet autorovi."
     }
-    if ((Git-Kod @("-C", $Repo, "apply", $Patch)) -ne 0) { Koniec "Vlozenie slovenskych uprav zlyhalo." }
+    if ((Git-Kod @("-C", $Repo, "apply", "--unidiff-zero", $Patch)) -ne 0) { Koniec "Vlozenie slovenskych uprav zlyhalo." }
     Ok "slovenske upravy vlozene do hey-claude"
 }
 

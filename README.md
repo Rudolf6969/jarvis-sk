@@ -129,7 +129,7 @@ Inštalátor je zatiaľ vyskúšaný na jednom počítači: Windows 11, grafika 
 
 ## Čo je čie
 
-- [hey-claude](https://github.com/kamol1dn/hey-claude) je dielo kamol1dn. Inštalátor si ho sťahuje priamo od autora v pripnutej verzii, tento repozitár jeho kód neobsahuje, len súbor s úpravami (`jarvis-ulohy-do-prace.patch`).
+- [hey-claude](https://github.com/kamol1dn/hey-claude) je dielo kamol1dn a všetky práva k nemu patria jemu. Autor k nemu neuviedol licenciu, preto ho tento repozitár neobsahuje a ďalej nešíri: inštalátor si ho sťahuje priamo od autora v pripnutej verzii. Tu je len súbor s našimi úpravami (`jarvis-ulohy-do-prace.patch`), v ktorom je z pôvodného kódu iba pár desiatok riadkov, ktoré nahrádzame. Tento doplnok je nekomerčný a s autorom nie je spojený. Ak si autor a niečo ti tu prekáža, napíš a upravíme to alebo stiahneme.
 - Budiace slovo „hey jarvis" je model z projektu openWakeWord s licenciou CC BY-NC-SA 4.0. Je len na nekomerčné použitie.
 - Hlas Lukáš je služba Microsoft Edge TTS, používa sa cez knižnicu edge-tts. Záložný hlas lili je z projektu Piper.
 - Claude a Claude Code sú produkty spoločnosti Anthropic. Tento projekt s ňou nie je spojený.
